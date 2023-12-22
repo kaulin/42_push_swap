@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ps_rrotate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 10:02:38 by jajuntti          #+#    #+#             */
-/*   Updated: 2023/12/21 14:51:08 by jajuntti         ###   ########.fr       */
+/*   Created: 2023/12/21 17:06:21 by jajuntti          #+#    #+#             */
+/*   Updated: 2023/12/22 13:22:14 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(int))
+static void	rrotate(t_list **list)
 {
-	if (lst == NULL || f == NULL)
-		return ;
-	while (lst)
-	{
-		f(lst->content);
-		lst = lst->next;
-	}
+	
+}
+void	rra(t_list **a)
+{
+	rrotate(a);
+	ft_printf("rra\n");
+}
+
+void	rrb(t_list **b)
+{
+	rotate(b);
+	ft_printf("rrb\n");
+}
+
+void	rrr(t_list **a, t_list **b)
+{
+	rrotate(a);
+	rrotate(b);
+	ft_printf("rrr\n");
 }

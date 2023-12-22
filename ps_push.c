@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ps_push.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 10:02:38 by jajuntti          #+#    #+#             */
-/*   Updated: 2023/12/21 14:51:08 by jajuntti         ###   ########.fr       */
+/*   Created: 2023/12/21 16:56:53 by jajuntti          #+#    #+#             */
+/*   Updated: 2023/12/22 13:22:30 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(int))
+static void	push(t_list **to, t_list **from)
 {
-	if (lst == NULL || f == NULL)
-		return ;
-	while (lst)
-	{
-		f(lst->content);
-		lst = lst->next;
-	}
+
+	
+}
+
+void	pa(t_list **a, t_list **b)
+{
+	push(a, b);
+	ft_printf("pb\n");
+}
+
+void	pb(t_list **a, t_list **b)
+{
+	push(b, a);
+	ft_printf("pb\n");
 }
