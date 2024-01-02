@@ -6,37 +6,40 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 14:40:50 by jajuntti          #+#    #+#             */
-/*   Updated: 2023/12/26 14:17:53 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/02 13:45:47 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	print_stacks(t_list **a, t_list **b, int n)
+t_list	*push_swap(int n, char *str[])
 {
-	t_list	*node_a;
-	t_list	*node_b;
-	
-	node_a = *a;
-	node_b = *b;
-	ft_printf("There are %d nodes in the stacks.\n", n);
-	ft_printf("A | B\n_________________\n");
-	while (node_a || node_b)
-	{
-		if (node_a && node_b)
-			ft_printf("%d | %d\n", node_a->content, node_b->content);
-		else if (node_a)
-			ft_printf("%d | -\n", node_a->content);
-		else
-			ft_printf("- | %d\n", node_b->content);
-		if (node_a)
-			node_a = node_a->next;
-		if (node_b)
-			node_b = node_b->next;
-	}
+	t_list	*a;
+	t_list	*b;
+
+	a = make_list(n, str);
+	if (!a)
+		return (NULL);
+	b = NULL;
+	print_lists(a, b, n);
+	pb(&a, &b);
+	print_lists(a, b, n);
+	return (a);
 }
 
-void	push_swap(t_list **a, t_list **b, int n)
-{
-	print_stacks(a, b, n);
-}
+// Used libft functions: ft_printf, ft_isdigit, ft_atoi, ft_split, ft_strchr
+
+/*
+required: sort   3 numbers with <=     3 operations
+required: sort   5 numbers with <=    12 operations
+scored:   sort 100 numbers with <=   700 operations   max score
+                                     900 operations
+                                    1100 operations
+                                    1300 operations
+                                    1500 operations   min score
+scored:   sort 500 numbers with <=  5500 operations   max score
+                                    7000 operations
+                                    8500 operations
+                                   10000 operations
+                                   11500 operations   min score
+*/

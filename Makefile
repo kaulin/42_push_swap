@@ -2,10 +2,12 @@ NAME = push_swap
 
 SRCS = main.c \
 	push_swap.c \
-	#ps_push.c \
+	ps_utils.c \
+	ps_push.c \
+	ps_swap.c \
 	ps_rotate.c \
 	ps_rrotate.c \
-	ps_swap.c \
+	dl_utils.c \
 
 LIBFT = ./libft/libft.a 
 

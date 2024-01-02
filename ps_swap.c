@@ -6,15 +6,21 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:07:17 by jajuntti          #+#    #+#             */
-/*   Updated: 2023/12/22 13:24:07 by jajuntti         ###   ########.fr       */
+/*   Updated: 2023/12/30 12:32:53 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+//
 static void	swap(t_list **list)
 {
+	t_list	*node;
 
+	node = (*list)->next;
+	(*list)->next->next->previous = *list;
+	(*list)->next = (*list)->next->next;
+	dl_lstadd_front(list, node);
 }
 
 void	sa(t_list **a)

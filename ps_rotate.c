@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 16:46:54 by jajuntti          #+#    #+#             */
-/*   Updated: 2023/12/22 13:22:43 by jajuntti         ###   ########.fr       */
+/*   Updated: 2023/12/30 12:33:07 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	rotate(t_list **list)
 {
-	
+	*list = (*list)->next;
 }
 
 void	ra(t_list **a)

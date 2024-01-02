@@ -1,42 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/20 14:41:06 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/02 13:45:27 by jajuntti         ###   ########.fr       */
+/*   Created: 2023/12/29 18:15:48 by jajuntti          #+#    #+#             */
+/*   Updated: 2023/12/29 18:37:18 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-static int	get_arr_len(char **arr)
-{
-	int	len;
-
-	len = 0;
-	while(arr[len])
-		len++;
-	return (len);
-}
+#include <stdio.h>
+#include <limits.h>
+#include <stdlib.h>
+#include "libft/libft.h"
 
 int	main(int argc, char *argv[])
 {
+	int			index;
+	long int	result;
+
+	index = 1;
 	if (argc < 2)
-		return (0);
-	if (argc == 2)
+		return (1);
+	while (index < argc)
 	{
-		argv = ft_split(argv[1], ' ');
-		argc = get_arr_len(argv);
+		result = atol(argv[index]);
+		printf("%s becomes: %ld\n", argv[index], result);
+		index++;
 	}
-	else
-	{
-		argv = &argv[1];
-		argc = argc -1;
-	}
-	if (!push_swap(argc, argv))
-		return (write(2, "Error!\n", 7));
+	printf("Max int + 1 = %d\n", ft_atoi("2147483648"));
+	printf("Min int - 1 = %d\n", ft_atoi("-2147483649"));
+	printf("(Max int + 1) * 2 = %d\n", ft_atoi("4294967296"));
 	return (0);
 }
