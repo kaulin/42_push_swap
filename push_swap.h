@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 16:10:54 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/02 13:41:59 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/02 17:38:00 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,10 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
-t_list	*push_swap(int n, char *str[]);
+int		push_swap(int n, char *str[]);
 t_list	*make_list(int n, char *str[]);
 t_list	*clean(t_list **list);
 t_list	*dl_lstnew(int content);
-void	print_lists(t_list *a, t_list *b, int n);
 void	dl_lstadd_front(t_list **lst, t_list *new);
 void	dl_lstadd_back(t_list **lst, t_list *new);
 int		dl_lstsize(t_list *lst);

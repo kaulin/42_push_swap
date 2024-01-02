@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 14:40:50 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/02 13:49:58 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/02 16:12:13 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,22 +67,4 @@ t_list	*make_list(int n, char *str[])
 		index++;
 	}
 	return (list);
-}
-
-void print_lists(t_list *a, t_list *b, int n)
-{
-	ft_printf("There are %d nodes in the lists.\n", n);
-	ft_printf("---\nA: %d\n", dl_lstsize(a));
-	while (a)
-	{
-		ft_printf("%d\n", a->content);
-		a = a->next;
-	}
-	ft_printf("---\nB: %d\n", dl_lstsize(b));
-	while (b)
-	{
-		ft_printf("%d\n", b->content);
-		b = b->next;
-	}
-	ft_printf("---\n\n");
 }
