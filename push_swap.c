@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 14:40:50 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/02 17:38:53 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/03 14:36:31 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,66 @@ static void print_lists(t_list *a, t_list *b)
 	}
 	ft_printf("---\n\n");
 }
-*/
 
-static int	check_order(t_list *list)
+static void print_list(t_list *list)
 {
-	while (list->next)
+	while (list)
 	{
-		if (list->content > list->next->content)
-			return (0);
+		ft_printf("%d ", list->content);
 		list = list->next;
 	}
-	return (1);
+	ft_printf("\n\n");
+	
+}
+*/
+
+/*	Check to see if the numbers in the loop are in ascending order. */
+static int	check_order(t_list *list)
+{
+	t_list	*min;
+	t_list	*node;
+	
+	node = list;
+	while (node->content > node->previous->content)
+		node = node->previous;
+	min = node;
+	node = list;
+	while (node->next && node->content < node->next->content)
+		node = node->next;
+	return (node == min->previous);
+}
+
+/* Rotates or reverses until ordered loops starts with smallest number */
+static void	correct_start(t_list **list)
+{
+	int		jumps;
+	t_list	*node;
+	
+	jumps = 0;
+	node = *list;
+	while (node->content > node->previous->content)
+	{
+		node = node->previous;
+		jumps++;
+	}
+	node = *list;
+	while (node->next && node->content < node->next->content)
+	{
+		node = node->next;
+		jumps--;
+	}
+	while ((*list)->previous->content < (*list)->content)
+	{
+		if	(jumps < 0)
+			rra(list);
+		else
+			ra(list);
+	}
 }
 
 static void	sort_three(t_list **a)
 {
-	if (check_order(*a))
+	if (check_order(*a) && (*a)->content < (*a)->previous->content)
 		return ;
 	if ((*a)->content < (*a)->next->content)
 	{
@@ -73,54 +117,43 @@ static void	sort_three(t_list **a)
 
 static void	sort_four(t_list **a, t_list **b)
 {
-	int i;
-
-	i = 0;
 	pb(a, b);
 	sort_three(a);
 	if ((*b)->content > (*a)->previous->content)
 	{
 		pa(a, b);
 		ra(a);
-		return;
 	}
-	while((*b)->content > (*a)->content && i < 3)
+	else
 	{
-		ra(a);
-		i++;
+		while((*b)->content > (*a)->content)
+			ra(a);
+		pa(a, b);
 	}
-	pa(a, b);
-	while (i > 0)
-	{
-		rra(a);
-		i--;
-	}
+	correct_start(a);
 }
 
 static void	sort_five(t_list **a, t_list **b)
 {
-	int i;
-
-	i = 0;
 	pb(a, b);
 	pb(a, b);
 	sort_three(a);
 	if ((*b)->content > (*b)->next->content)
 		rb(b);
-	while(*b && i < 3)
+	while (*b)
 	{
-		if ((*b)->content < (*a)->content || i == 2)
+		if ((*b)->content < (*a)->content)
+			pa(a, b);
+		else if ((*b)->content > (*a)->previous->content
+			&& (*a)->previous->content > (*a)->content)
 		{
 			pa(a, b);
+			ra(a);
 		}
-		ra(a);
-		i++;
+		else
+			ra(a);
 	}
-	while (i > 0)
-	{
-		rra(a);
-		i--;
-	}
+	correct_start(a);
 }
 
 int	push_swap(int n, char *str[])
@@ -132,8 +165,13 @@ int	push_swap(int n, char *str[])
 	if (!a)
 		return (1);
 	b = NULL;
-	if (check_order(a))
+	if (check_order(a) && a->content < a->previous->content)
 		return (0);
+	if (check_order(a))
+	{
+		correct_start(&a);
+		return (0);
+	}
 	if (n == 2)
 		ra(&a);
 	if (n == 3)

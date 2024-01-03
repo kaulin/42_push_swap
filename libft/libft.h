@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 11:36:56 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/02 13:47:23 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/03 15:08:39 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char		*ft_strdup(const char *s1);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strtrim(char const *s1, char const *set);
-char		**ft_split(char const *s, char c);
+char		**ft_split(char const *s, char *dstr);
 char		*ft_itoa(int n);
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void		ft_striteri(char *s, void (*f)(unsigned int, char*));

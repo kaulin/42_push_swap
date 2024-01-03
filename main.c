@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 14:41:06 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/02 17:50:33 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/03 15:10:46 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	main(int argc, char *argv[])
 	if (argc == 2)
 	{
 		one_arg = 1;
-		argv = ft_split(argv[1], ' ');
+		argv = ft_split(argv[1], " \t\v\n\r\f");
 		argc = get_arr_len(argv);
 	}
 	else
@@ -53,7 +53,7 @@ int	main(int argc, char *argv[])
 		argv = &argv[1];
 		argc = argc -1;
 	}
-	if (!push_swap(argc, argv))
+	if (push_swap(argc, argv))
 	{
 		if (one_arg)
 			clean_arr(argv);
