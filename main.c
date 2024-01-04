@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 14:41:06 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/03 15:10:46 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/04 15:29:01 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,49 +17,43 @@ static int	get_arr_len(char **arr)
 	int	len;
 
 	len = 0;
-	while(arr[len])
+	while (arr[len])
 		len++;
 	return (len);
 }
 
 static void	clean_arr(char **arr)
 {
-	char	*str;
+	int	i;
 
-	str = *arr;
-	while (str)
-	{
-		free(str);
-		str++;
-	}
+	i = 0;
+	while (arr[i])
+		free(arr[i++]);
 	free(arr);
 }
 
 int	main(int argc, char *argv[])
 {
-	int	one_arg;
+	int		error;
+	char	**split;
 
-	one_arg = 0;
+	error = 0;
 	if (argc < 2)
 		return (0);
 	if (argc == 2)
 	{
-		one_arg = 1;
-		argv = ft_split(argv[1], " \t\v\n\r\f");
-		argc = get_arr_len(argv);
+		split = ft_split(argv[1], " \t\v\n\r\f");
+		argc = get_arr_len(split);
+		error = push_swap(argc, split);
+		clean_arr(split);
 	}
 	else
 	{
 		argv = &argv[1];
-		argc = argc -1;
+		argc = argc - 1;
+		error = push_swap(argc, argv);
 	}
-	if (push_swap(argc, argv))
-	{
-		if (one_arg)
-			clean_arr(argv);
+	if (error)
 		return (write(2, "Error\n", 7));
-	}
-	if (one_arg)
-		clean_arr(argv);
 	return (0);
 }

@@ -6,10 +6,9 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 16:10:54 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/02 17:38:00 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/04 15:34:39 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
@@ -24,6 +23,12 @@ typedef struct s_list
 }	t_list;
 
 int		push_swap(int n, char *str[]);
+int		check_order(t_list *list);
+void	correct_start(t_list **list);
+void	sort_three(t_list **a);
+void	sort_four(t_list **a, t_list **b);
+void	sort_five(t_list **a, t_list **b);
+void	sort_n(t_list **a, t_list **b);
 t_list	*make_list(int n, char *str[]);
 t_list	*clean(t_list **list);
 t_list	*dl_lstnew(int content);

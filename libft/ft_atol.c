@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 11:39:44 by jajuntti          #+#    #+#             */
-/*   Updated: 2023/12/30 10:58:13 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/04 15:12:06 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ long int	ft_atol(const char *str)
 		if (prev > num)
 		{
 			if (sign == 1)
-				return (-1);
-			return (0);
+				return (9223372036854775807);
+			return (-9223372036854775807);
 		}
 	}
 	return (sign * num);

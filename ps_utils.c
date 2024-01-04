@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 14:40:50 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/03 14:35:54 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/04 15:20:34 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,25 @@ t_list	*clean(t_list **list)
 static int	check_form(char *str)
 {
 	int	i;
-	
+	int	sign;
+
 	i = 0;
+	sign = 0;
 	while (str[i] && ft_strchr(" \t\v\n\r\f", str[i]) != NULL)
 		i++;
 	if (str[i] == '-' || str[i] == '+')
+	{
 		i++;
-	if (!ft_isdigit(str[i]))
+		sign = 1;
+	}
+	if (!str[i] && sign)
 		return (1);
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (1);
+		i++;
+	}
 	return (0);
 }
 
@@ -57,7 +68,7 @@ t_list	*make_list(int n, char *str[])
 		if (check_form(str[index]))
 			return (clean(&list));
 		content = ft_atol(str[index]);
-		if (content > 2147483647 || content < -2147483648 
+		if (content > 2147483647 || content < -2147483648
 			|| check_dup(list, content))
 			return (clean(&list));
 		node = dl_lstnew((int)content);

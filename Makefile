@@ -2,6 +2,7 @@ NAME = push_swap
 
 SRCS = main.c \
 	push_swap.c \
+	sort.c \
 	ps_utils.c \
 	ps_push.c \
 	ps_swap.c \
