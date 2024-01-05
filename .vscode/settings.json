@@ -1,6 +1,8 @@
 {
 	"files.associations": {
 		"push_swap.h": "c",
-		"sstream": "c"
+		"sstream": "c",
+		"algorithm": "c",
+		"random": "c"
 	}
 }

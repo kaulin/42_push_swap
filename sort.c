@@ -6,12 +6,13 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 15:27:27 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/04 15:34:13 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/05 09:50:27 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/* CLEAN THIS UP */
 void	sort_three(t_list **a)
 {
 	if (check_order(*a) && (*a)->content < (*a)->previous->content)
@@ -84,5 +85,7 @@ void	sort_five(t_list **a, t_list **b)
 
 void	sort_n(t_list **a, t_list **b)
 {
+	if (a == b)
+		return;
 	return ;
 }
