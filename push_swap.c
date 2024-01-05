@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 14:40:50 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/05 09:51:10 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/05 14:54:31 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,62 +44,6 @@ static void print_list(t_list *list)
 
 #include "push_swap.h"
 
-/*	Check to see if the numbers in the loop are in ascending order. */
-int	check_order(t_list *list)
-{
-	t_list	*min;
-	t_list	*node;
-
-	node = list;
-	while (node->content > node->previous->content)
-		node = node->previous;
-	min = node;
-	node = list;
-	while (node->next && node->content < node->next->content)
-		node = node->next;
-	return (node == min->previous);
-}
-
-/* Rotates or reverses until ordered loop starts with smallest number */
-void	correct_start(t_list **list)
-{
-	int		jumps;
-	t_list	*node;
-
-	jumps = 0;
-	node = *list;
-	while (node->content > node->previous->content)
-	{
-		node = node->previous;
-		jumps++;
-	}
-	node = *list;
-	while (node->next && node->content < node->next->content)
-	{
-		node = node->next;
-		jumps--;
-	}
-	while ((*list)->previous->content < (*list)->content)
-	{
-		if (jumps < 0)
-			rra(list);
-		else
-			ra(list);
-	}
-}
-
-static void	sort_control(int n, t_list **a, t_list **b)
-{
-	if (n == 2)
-		ra(&a);
-	if (n == 3)
-		sort_three(&a);
-	if (n == 4)
-		sort_four(&a, &b);
-	if (n == 5)
-		sort_five(&a, &b);	
-}
-
 int	push_swap(int n, char *str[])
 {
 	t_list	*a;
@@ -110,10 +54,14 @@ int	push_swap(int n, char *str[])
 		return (1);
 	b = NULL;
 	if (n == 1 || (check_order(a) && a->content < a->previous->content))
+	{
+		dl_lstclear(&a);
 		return (0);
+	}
 	if (check_order(a))
 	{
 		correct_start(&a);
+		dl_lstclear(&a);
 		return (0);
 	}
 	sort_control(n, &a, &b);

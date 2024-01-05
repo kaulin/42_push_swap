@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 16:10:54 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/04 15:34:39 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/05 14:55:36 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,11 @@ typedef struct s_list
 }	t_list;
 
 int		push_swap(int n, char *str[]);
+void	sort_control(int n, t_list **a, t_list **b);
 int		check_order(t_list *list);
 void	correct_start(t_list **list);
-void	sort_three(t_list **a);
-void	sort_four(t_list **a, t_list **b);
-void	sort_five(t_list **a, t_list **b);
-void	sort_n(t_list **a, t_list **b);
+void	rotate_n(int jumps, t_list **list);
+int		find_min(int n, t_list *list);
 t_list	*make_list(int n, char *str[]);
 t_list	*clean(t_list **list);
 t_list	*dl_lstnew(int content);
