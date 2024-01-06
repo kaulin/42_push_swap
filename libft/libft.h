@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 11:36:56 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/06 12:57:40 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/06 13:15:18 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int			ft_putstr_fd(char *s, int fd);
 int			ft_putendl_fd(char *s, int fd);
 int			ft_putnbr_fd(int n, int fd);
 int			ft_putnbr_ul_fd(unsigned long n, int fd);
-int			ft__putnbr_ul_base_fd(unsigned long n, char *base, int fd);
+int			ft_putnbr_ul_base_fd(unsigned long n, char *base, int fd);
 t_list		*ft_lstnew(void *content);
 void		ft_lstadd_front(t_list **lst, t_list *new);
 int			ft_lstsize(t_list *lst);
