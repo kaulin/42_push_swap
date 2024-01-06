@@ -6,18 +6,11 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:06:21 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/06 12:51:11 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/06 15:53:24 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static void	rrotate(t_dlist **list)
-{
-	(*list)->prev->next = *list;
-	*list = (*list)->prev;
-	(*list)->prev->next = NULL;
-}
 
 void	rra(t_dlist **a)
 {

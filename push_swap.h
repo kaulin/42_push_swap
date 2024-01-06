@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 16:10:54 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/06 12:53:12 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/06 15:57:31 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "libft/libft.h"
-
-typedef struct s_dlist
-{
-	int				value;
-	struct s_dlist	*prev;
-	struct s_dlist	*next;
-}	t_dlist;
+# include "dlist.h"
 
 int		push_swap(int n, char *str[]);
 void	sort_control(int n, t_dlist **a, t_dlist **b);
@@ -30,11 +24,6 @@ void	rotate_n(int jumps, t_dlist **list);
 int		find_min(int n, t_dlist *list);
 t_dlist	*make_list(int n, char *str[]);
 t_dlist	*clean(t_dlist **list);
-t_dlist	*dl_lstnew(int value);
-void	dl_lstadd_front(t_dlist **lst, t_dlist *new);
-void	dl_lstadd_back(t_dlist **lst, t_dlist *new);
-int		dl_lstsize(t_dlist *lst);
-void	dl_lstclear(t_dlist **lst);
 void	sa(t_dlist **a);
 void	sb(t_dlist **b);
 void	ss(t_dlist **a, t_dlist **b);

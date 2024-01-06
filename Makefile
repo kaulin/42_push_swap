@@ -9,11 +9,17 @@ SRCS = main.c \
 	ps_swap.c \
 	ps_rotate.c \
 	ps_rrotate.c \
-	dl_utils.c \
 
-LIBFT = ./libft/libft.a 
+DL_SRCS = dlist_utils.c \
+	dlist_moves.c \
 
-LIBDIR = ./libft
+DL_OBJ = $(DL_SRCS:.c=.o)
+
+DLIST = dlist.a
+
+LIBFT = libft.a 
+
+LIBDIR = ./libft/
 
 CC = gcc
 
@@ -21,24 +27,33 @@ CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(SRCS)
-	$(CC) $(CFLAGS) -I$(LIBDIR) $(SRCS) $(LIBFT) -o $@
+$(NAME): $(LIBFT) $(DLIST) $(SRCS)
+	$(CC) $(CFLAGS) -I$(LIBDIR) $(SRCS) $(LIBDIR)$(LIBFT) $(DLIST) -o $(NAME)
 
 db: $(LIBFT) $(SRCS)
-	$(CC) $(CFLAGS) -I$(LIBDIR) $(SRCS) $(LIBFT) -o $(NAME) -g
+	$(CC) $(CFLAGS) -I$(LIBDIR) $(SRCS) $(LIBDIR)$(LIBFT) $(DLIST) -o $(NAME) -g
 	make clean
+
+$(LIBDIR)$(LIBFT): $(LIBFT)
 
 $(LIBFT):
 	make -C $(LIBDIR)
 
+$(DLIST): $(DL_OBJ)
+	ar -crs $(DLIST) $(DL_OBJ)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
-	rm -f $(OBJ)
+	rm -f $(DL_OBJ)
 	make clean -C $(LIBDIR)
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f $(DLIST)
 	make fclean -C $(LIBDIR)
 
 re: fclean $(NAME)
 
-.PHONY: all clean fclean re db
+.PHONY: all clean fclean re db dlist
