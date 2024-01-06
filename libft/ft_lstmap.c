@@ -1,28 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_x.c                                          :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 14:12:31 by jajuntti          #+#    #+#             */
-/*   Updated: 2023/12/20 15:53:48 by jajuntti         ###   ########.fr       */
+/*   Created: 2023/11/06 10:02:42 by jajuntti          #+#    #+#             */
+/*   Updated: 2024/01/06 12:01:23 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	print_x(t_printer *printer)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	unsigned long	hex;
+	t_list	*new;
+	t_list	*node;
+	t_list	*tmp;
 
-	hex = va_arg(printer->params, unsigned int);
-	if (*printer->source == 'x')
-		printer->status = safer_putnbr_ul_base(hex, "0123456789abcdef");
-	else
-		printer->status = safer_putnbr_ul_base(hex, "0123456789ABCDEF");
-	if (printer->status < 0)
-		return (1);
-	printer->output_count += printer->status;
-	return (0);
+	new = NULL;
+	if (lst == NULL)
+		return (NULL);
+	while (lst)
+	{
+		tmp = f(lst->content);
+		node = ft_lstnew(tmp);
+		if (node == NULL)
+		{
+			free(tmp);
+			ft_lstclear(&new, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&new, node);
+		lst = lst->next;
+	}
+	return (new);
 }

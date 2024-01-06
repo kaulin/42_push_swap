@@ -6,14 +6,19 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 12:45:14 by jajuntti          #+#    #+#             */
-/*   Updated: 2023/11/02 12:46:47 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/06 12:09:53 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putendl_fd(char *s, int fd)
+int	ft_putendl_fd(char *s, int fd)
 {
-	write(fd, s, ft_strlen(s));
-	write(fd, "\n", 1);
+	int	written = 0;
+	written = write(fd, s, ft_strlen(s));
+	if (written < 0)
+		return (-1);
+	if (write(fd, "\n", 1) < 0)
+		return (-1);
+	return (written + 1);
 }

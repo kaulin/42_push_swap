@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   safer_putnbr_ul.c                                  :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 16:40:52 by jajuntti          #+#    #+#             */
-/*   Updated: 2023/12/20 15:53:48 by jajuntti         ###   ########.fr       */
+/*   Created: 2023/11/06 10:02:27 by jajuntti          #+#    #+#             */
+/*   Updated: 2024/01/06 12:01:26 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	safer_putnbr_ul(unsigned long n)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	int	written;
-	int	placeholder;
-
-	written = 0;
-	if (n >= 10)
-	{
-		placeholder = safer_putnbr_ul(n / 10);
-		if (placeholder < 0)
-			return (-1);
-		written += placeholder;
-	}
-	if (safer_putchar(n % 10 + '0') < 0)
-		return (-1);
-	written++;
-	return (written);
+	if (!new)
+		return ;
+	new->next = *lst;
+	*lst = new;
 }

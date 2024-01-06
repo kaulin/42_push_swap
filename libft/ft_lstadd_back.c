@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_s.c                                          :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 14:12:31 by jajuntti          #+#    #+#             */
-/*   Updated: 2023/12/20 15:53:48 by jajuntti         ###   ########.fr       */
+/*   Created: 2023/11/06 10:02:22 by jajuntti          #+#    #+#             */
+/*   Updated: 2024/01/06 12:01:27 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	print_s(t_printer *printer)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	char	*string;
+	t_list	*temp;
 
-	string = va_arg(printer->params, char *);
-	printer->status = safer_putstr(string);
-	if (printer->status < 0)
-		return (1);
-	printer->output_count += printer->status;
-	return (0);
+	if (*lst == NULL)
+		*lst = new;
+	else
+	{
+		temp = ft_lstlast(*lst);
+		temp->next = new;
+	}
 }

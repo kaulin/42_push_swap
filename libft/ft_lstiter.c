@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_u.c                                          :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 14:12:31 by jajuntti          #+#    #+#             */
-/*   Updated: 2023/12/20 15:53:48 by jajuntti         ###   ########.fr       */
+/*   Created: 2023/11/06 10:02:38 by jajuntti          #+#    #+#             */
+/*   Updated: 2024/01/06 12:01:24 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	print_u(t_printer *printer)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	unsigned long	number;
-
-	number = va_arg(printer->params, unsigned int);
-	printer->status = safer_putnbr_ul(number);
-	if (printer->status < 0)
-		return (1);
-	printer->output_count += printer->status;
-	return (0);
+	if (lst == NULL || f == NULL)
+		return ;
+	while (lst)
+	{
+		f(lst->content);
+		lst = lst->next;
+	}
 }

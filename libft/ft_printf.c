@@ -6,11 +6,34 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 12:32:31 by jajuntti          #+#    #+#             */
-/*   Updated: 2023/12/20 15:53:48 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/06 12:29:53 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
+
+int	print_c(t_printer *printer)
+{
+	char	character;
+
+	character = (char)va_arg(printer->params, int);
+	if (ft_putchar_fd(character, 1) < 0)
+		return (1);
+	printer->output_count++;
+	return (0);
+}
+
+int	print_s(t_printer *printer)
+{
+	char	*string;
+
+	string = va_arg(printer->params, char *);
+	printer->status = ft_putstr_fd(string, 1);
+	if (printer->status < 0)
+		return (1);
+	printer->output_count += printer->status;
+	return (0);
+}
 
 static int	convert(t_printer *printer)
 {
@@ -31,7 +54,7 @@ static int	convert(t_printer *printer)
 		printer->status = print_x(printer);
 	if (*printer->source == '%')
 	{
-		if (safer_putchar('%') < 0)
+		if (ft_putchar_fd('%', 1) < 0)
 			printer->status = 1;
 		else
 			printer->status = 0;
@@ -54,7 +77,7 @@ int	ft_printf(const char *source, ...)
 	{
 		if (*printer.source != '%')
 		{
-			if (safer_putchar(*printer.source) < 0)
+			if (ft_putchar_fd(*printer.source, 1) < 0)
 				return (-1);
 			printer.source++;
 			printer.output_count++;
@@ -65,15 +88,3 @@ int	ft_printf(const char *source, ...)
 	va_end(printer.params);
 	return (printer.output_count);
 }
-/*
-You have to implement the following conversions:
-• %c Prints a single character.
-• %s Prints a string (as defined by the common C convention).
-• %p The void * pointer argument has to be printed in hexadecimal format.
-• %d Prints a decimal (base 10) number.
-• %i Prints an integer in base 10.
-• %u Prints an unsigned decimal (base 10) number.
-• %x Prints a number in hexadecimal (base 16) lowercase format.
-• %X Prints a number in hexadecimal (base 16) uppercase format.
-• %% Prints a percent sign.
-*/

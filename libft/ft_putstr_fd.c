@@ -6,16 +6,16 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 12:43:07 by jajuntti          #+#    #+#             */
-/*   Updated: 2023/11/13 15:46:01 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/06 12:14:39 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int	ft_putstr_fd(char *s, int fd)
 {
 	if (!s)
-		write(fd, "(null)", 6);
+		return (write(fd, "(null)", 6));
 	else
-		write(fd, s, ft_strlen(s));
+		return (write(fd, s, ft_strlen(s)));
 }

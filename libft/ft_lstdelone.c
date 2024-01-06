@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   safer_putstr.c                                  :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/02 12:43:07 by jajuntti          #+#    #+#             */
-/*   Updated: 2023/11/24 10:57:37 by jajuntti         ###   ########.fr       */
+/*   Created: 2023/11/06 10:02:33 by jajuntti          #+#    #+#             */
+/*   Updated: 2024/01/06 12:01:25 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	safer_putstr(char *s)
+void	ft_lstdelone(t_list	*lst, void (*del)(void *))
 {
-	if (!s)
-		return (write(1, "(null)", 6));
-	else
-		return (write(1, s, ft_strlen(s)));
+	if (lst == NULL || del == NULL)
+		return ;
+	if (lst->content)
+		del(lst->content);
+	free(lst);
 }

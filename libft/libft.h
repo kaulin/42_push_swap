@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 11:36:56 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/03 15:08:39 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/06 12:57:40 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,17 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdarg.h>
 
-typedef struct s_printer
+typedef struct s_list
 {
-	va_list		params;
-	const char	*source;
-	int			output_count;
-	int			status;
-}	t_printer;
+	void			*content;
+	struct s_list	*next;
+}	t_list;
 
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
-int			ft_isascii(int c);
 int			ft_isalnum(int c);
+int			ft_isascii(int c);
 int			ft_isprint(int c);
 size_t		ft_strlen(const char *s);
 void		*ft_memset(void *b, int c, size_t len);
@@ -49,28 +46,28 @@ int			ft_atoi(const char *str);
 long int	ft_atol(const char *str);
 void		*ft_calloc(size_t count, size_t size);
 char		*ft_strdup(const char *s1);
-char		*ft_substr(char const *s, unsigned int start, size_t len);
+char		*ft_substr(char const *s, unsigned int start, size_t len); //todo
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strtrim(char const *s1, char const *set);
 char		**ft_split(char const *s, char *dstr);
 char		*ft_itoa(int n);
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
-void		ft_striteri(char *s, void (*f)(unsigned int, char*));
-void		ft_putchar_fd(char c, int fd);
-void		ft_putstr_fd(char *s, int fd);
-void		ft_putendl_fd(char *s, int fd);
-void		ft_putnbr_fd(int n, int fd);
 int			ft_printf(const char *source, ...);
-int			safer_putchar(char c);
-int			safer_putstr(char *s);
-int			safer_putnbr(int n);
-int			safer_putnbr_ul(unsigned long n);
-int			safer_putnbr_ul_base(unsigned long n, char *base);
-int			print_c(t_printer *printer);
-int			print_s(t_printer *printer);
-int			print_p(t_printer *printer);
-int			print_d(t_printer *printer);
-int			print_u(t_printer *printer);
-int			print_x(t_printer *printer);
+void		ft_striteri(char *s, void (*f)(unsigned int, char*));
+int			ft_putchar_fd(char c, int fd);
+int			ft_putstr_fd(char *s, int fd);
+int			ft_putendl_fd(char *s, int fd);
+int			ft_putnbr_fd(int n, int fd);
+int			ft_putnbr_ul_fd(unsigned long n, int fd);
+int			ft__putnbr_ul_base_fd(unsigned long n, char *base, int fd);
+t_list		*ft_lstnew(void *content);
+void		ft_lstadd_front(t_list **lst, t_list *new);
+int			ft_lstsize(t_list *lst);
+t_list		*ft_lstlast(t_list *lst);
+void		ft_lstadd_back(t_list **lst, t_list *new);
+void		ft_lstdelone(t_list *lst, void (*del)(void *));
+void		ft_lstclear(t_list **lst, void (*del)(void *));
+void		ft_lstiter(t_list *lst, void (*f)(void *));
+t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 #endif
