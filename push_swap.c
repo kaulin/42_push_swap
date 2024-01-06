@@ -6,35 +6,35 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 14:40:50 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/05 14:54:31 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/06 12:53:07 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /*
-static void print_lists(t_list *a, t_list *b)
+static void print_dlists(t_dlist *a, t_dlist *b)
 {
 	ft_printf("---\nA: %d\n", dl_lstsize(a));
 	while (a)
 	{
-		ft_printf("%d\n", a->content);
+		ft_printf("%d\n", a->value);
 		a = a->next;
 	}
 	ft_printf("---\nB: %d\n", dl_lstsize(b));
 	while (b)
 	{
-		ft_printf("%d\n", b->content);
+		ft_printf("%d\n", b->value);
 		b = b->next;
 	}
 	ft_printf("---\n\n");
 }
 
-static void print_list(t_list *list)
+static void print_dlist(t_dlist *list)
 {
 	while (list)
 	{
-		ft_printf("%d ", list->content);
+		ft_printf("%d ", list->value);
 		list = list->next;
 	}
 	ft_printf("\n\n");
@@ -46,14 +46,14 @@ static void print_list(t_list *list)
 
 int	push_swap(int n, char *str[])
 {
-	t_list	*a;
-	t_list	*b;
+	t_dlist	*a;
+	t_dlist	*b;
 
 	a = make_list(n, str);
 	if (!a)
 		return (1);
 	b = NULL;
-	if (n == 1 || (check_order(a) && a->content < a->previous->content))
+	if (n == 1 || (check_order(a) && a->value < a->prev->value))
 	{
 		dl_lstclear(&a);
 		return (0);
@@ -87,15 +87,15 @@ scored:   sort 500 numbers with <=  5500 operations   max score
 */
 
 /* Test all ps language operators
-	print_lists(a, b, n);
+	print_dlists(a, b, n);
 	pb(&a, &b);
-	print_lists(a, b, n);
+	print_dlists(a, b, n);
 	ra(&a);
-	print_lists(a, b, n);
+	print_dlists(a, b, n);
 	sa(&a);
-	print_lists(a, b, n);
+	print_dlists(a, b, n);
 	pb(&a, &b);
-	print_lists(a, b, n);
+	print_dlists(a, b, n);
 	rra(&b);
-	print_lists(a, b, n);
+	print_dlists(a, b, n);
 */

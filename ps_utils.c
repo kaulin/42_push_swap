@@ -6,13 +6,13 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 14:40:50 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/04 15:53:54 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/06 12:53:07 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*clean(t_list **list)
+t_dlist	*clean(t_dlist **list)
 {
 	dl_lstclear(list);
 	return (NULL);
@@ -43,23 +43,23 @@ static int	check_form(char *str)
 	return (0);
 }
 
-static int	check_dup(t_list *list, long num)
+static int	check_dup(t_dlist *list, long num)
 {
 	while (list)
 	{
-		if (list->content == (int)num)
+		if (list->value == (int)num)
 			return (1);
 		list = list->next;
 	}
 	return (0);
 }
 
-t_list	*make_list(int n, char *str[])
+t_dlist	*make_list(int n, char *str[])
 {
 	int			index;
-	long int	content;
-	t_list		*list;
-	t_list		*node;
+	long int	value;
+	t_dlist		*list;
+	t_dlist		*node;
 
 	index = 0;
 	list = NULL;
@@ -67,11 +67,11 @@ t_list	*make_list(int n, char *str[])
 	{
 		if (check_form(str[index]))
 			return (clean(&list));
-		content = ft_atol(str[index]);
-		if (content > 2147483647 || content < -2147483648
-			|| check_dup(list, content))
+		value = ft_atol(str[index]);
+		if (value > 2147483647 || value < -2147483648
+			|| check_dup(list, value))
 			return (clean(&list));
-		node = dl_lstnew((int)content);
+		node = dl_lstnew((int)value);
 		if (!node)
 			return (clean(&list));
 		dl_lstadd_back(&list, node);
