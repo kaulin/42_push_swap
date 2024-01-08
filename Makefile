@@ -2,9 +2,10 @@ NAME = push_swap
 
 SRCS = main.c \
 	push_swap.c \
-	sort.c \
-	sort_moves.c \
-	sort_utils.c \
+	ps_moves.c \
+	ps_smart_move.c \
+	ps_sort.c \
+	ps_sort_utils.c \
 	ps_utils.c \
 
 DL_SRCS = dlist_utils.c \

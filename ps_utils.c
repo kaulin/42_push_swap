@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 14:40:50 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/06 12:53:07 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/08 10:17:27 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ t_dlist	*make_list(int n, char *str[])
 		node = dl_lstnew((int)value);
 		if (!node)
 			return (clean(&list));
+		node->stack = 'a';
 		dl_lstadd_back(&list, node);
 		index++;
 	}

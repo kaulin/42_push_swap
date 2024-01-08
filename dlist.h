@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 15:56:16 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/06 16:02:04 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/08 10:36:56 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_dlist
 	int				value;
 	struct s_dlist	*prev;
 	struct s_dlist	*next;
+	char			stack;
 }	t_dlist;
 
 t_dlist	*dl_lstnew(int value);

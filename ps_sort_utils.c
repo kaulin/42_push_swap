@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_utils.c                                       :+:      :+:    :+:   */
+/*   ps_sort_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:33:20 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/07 17:17:52 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/08 11:46:18 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,18 @@ void	min_to_top(t_dlist **list, t_dlist **other)
 	while ((*list)->prev->value < (*list)->value)
 	{
 		if (jumps < 0)
-			rrotate_x(list, 'a', other);
+			ps_rrotate(list, 'a', other);
 		else
-			rotate_x(list, 'a', other);
+			ps_rotate(list, 'a', other);
 	}
 }
 
-int	moves_to_top(t_dlist *list, int n, t_dlist *node)
+int	moves_to_top(t_dlist *list, t_dlist *node)
 {
+	int	n;
 	int	moves;
 
+	n = dl_lstsize(list);
 	moves = 0;
 	while (list != node)
 	{
@@ -72,32 +74,17 @@ int	moves_to_top(t_dlist *list, int n, t_dlist *node)
 		return (-1 * (n - moves));
 }
 
-int	moves_to_position (t_dlist *list, int n, t_dlist *node)
+int	moves_to_pos (t_dlist *list, t_dlist *node)
 {
+	int		n;
 	t_dlist	*target;
 
+	n = dl_lstsize(list);
 	target = list;
 	if ((node->value < target->value && node->value < target->prev->value)
 		|| (node->value > target->value && node->value > target->prev->value))
-		return (moves_to_top(list, n, target));
+		return (moves_to_top(list, target));
 	while (node->value > target->value && target->next)
 		target = target->next;
-	return (moves_to_top(list, n, target));
-}
-
-void	rotate_n(int jumps, t_dlist **list)
-{
-	while(jumps != 0)
-	{
-		if (jumps > 0)
-		{
-			ra(list);
-			jumps--;
-		}
-		else
-		{
-			rra(list);
-			jumps++;
-		}
-	}
+	return (moves_to_top(list, target));
 }
