@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 14:40:50 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/08 10:17:27 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/08 12:23:16 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,31 @@ t_dlist	*make_list(int n, char *str[])
 		index++;
 	}
 	return (list);
+}
+
+void	print_dlist(t_dlist *list)
+{
+	while (list)
+	{
+		ft_printf("%d ", list->value);
+		list = list->next;
+	}
+	ft_printf("\n\n");
+}
+
+void	print_dlists(t_dlist *a, t_dlist *b)
+{
+	ft_printf("---\nA: %d\n", dl_lstsize(a));
+	while (a)
+	{
+		ft_printf("%d\n", a->value);
+		a = a->next;
+	}
+	ft_printf("---\nB: %d\n", dl_lstsize(b));
+	while (b)
+	{
+		ft_printf("%d\n", b->value);
+		b = b->next;
+	}
+	ft_printf("---\n\n");
 }

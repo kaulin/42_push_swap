@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:33:20 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/08 11:46:18 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/08 15:48:31 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,32 +28,32 @@ int	check_order(t_dlist *list)
 	return (node == min->prev);
 }
 
-/* Rotates or reverses until ordered loop starts with smallest number */
-void	min_to_top(t_dlist **list, t_dlist **other)
+static int	find_maxval(t_dlist *list)
 {
-	int		jumps;
-	t_dlist	*node;
+	int	maxval;
 
-	jumps = 0;
-	node = *list;
-	while (node->value > node->prev->value)
+	maxval = list->value;
+	while (list->next)
 	{
-		node = node->prev;
-		jumps++;
+		list = list->next;
+		if (list->value > maxval)
+			maxval = list->value;
 	}
-	node = *list;
-	while (node->next && node->value < node->next->value)
+	return (maxval);
+}
+
+static int	find_minval(t_dlist *list)
+{
+	int	minval;
+
+	minval = list->value;
+	while (list->next)
 	{
-		node = node->next;
-		jumps--;
+		list = list->next;
+		if (list->value < minval)
+			minval = list->value;
 	}
-	while ((*list)->prev->value < (*list)->value)
-	{
-		if (jumps < 0)
-			ps_rrotate(list, 'a', other);
-		else
-			ps_rotate(list, 'a', other);
-	}
+	return (minval);
 }
 
 int	moves_to_top(t_dlist *list, t_dlist *node)
@@ -76,15 +76,24 @@ int	moves_to_top(t_dlist *list, t_dlist *node)
 
 int	moves_to_pos (t_dlist *list, t_dlist *node)
 {
-	int		n;
+	int		maxval;
+	int		minval;
 	t_dlist	*target;
 
-	n = dl_lstsize(list);
+	if (!list)
+		return (0);
+	maxval = find_maxval(list);
+	minval = find_minval(list);
 	target = list;
-	if ((node->value < target->value && node->value < target->prev->value)
-		|| (node->value > target->value && node->value > target->prev->value))
+	if (node->value < minval && target->value == minval)
 		return (moves_to_top(list, target));
-	while (node->value > target->value && target->next)
+	if (node->value > maxval && target->prev->value == maxval)
+		return (moves_to_top(list, target));
+	while (target->next)
+	{
+		if (node->value > target->prev->value && node->value < target->value)
+			return (moves_to_top(list, target));
 		target = target->next;
+	}
 	return (moves_to_top(list, target));
 }

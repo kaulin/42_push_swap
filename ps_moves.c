@@ -6,17 +6,20 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 16:28:40 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/08 10:20:21 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/08 15:28:09 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_push(t_dlist **from, t_dlist **to, char x)
+void	ps_push(t_dlist **from, t_dlist **to)
 {
-	(*from)->stack = (*to)->stack;
+	if ((*from)->stack == 'a')
+		(*from)->stack = 'b';
+	else
+		(*from)->stack = 'a';
 	push(from, to);
-	ft_printf("p%c\n", x);
+	ft_printf("p%c\n", (*to)->stack);
 }
 
 void	ps_swap(t_dlist **this, char x, t_dlist **other)
@@ -33,24 +36,24 @@ void	ps_swap(t_dlist **this, char x, t_dlist **other)
 
 void	ps_rotate(t_dlist **this, char x, t_dlist **other)
 {
-	if (x != 'r')
-		rotate(this);
-	else
+	if (x == 'r')
 	{
 		rotate(this);
 		rotate(other);
 	}
+	else
+		rotate(this);
 	ft_printf("r%c\n", x);
 }
 
 void	ps_rrotate(t_dlist **this, char x, t_dlist **other)
 {
-	if (x != 'r')
-		rrotate(this);
-	else
+	if (x == 'r')
 	{
 		rrotate(this);
 		rrotate(other);
 	}
+	else
+		rrotate(this);
 	ft_printf("rr%c\n", x);
 }

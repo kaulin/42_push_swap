@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 15:27:27 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/08 11:55:20 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/08 15:34:35 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	sort_three(t_dlist **a, t_dlist **b)
 	else
 		ps_swap(a, 'a', b);
 }
-
+/*
 static void	sort_four(t_dlist **a, t_dlist **b)
 {
 	ps_push(a, b, 'b');
@@ -82,18 +82,22 @@ static void	sort_five(t_dlist **a, t_dlist **b)
 	}
 	min_to_top(a, b);
 }
+*/
 
 static void	sort_n(int n, t_dlist **a, t_dlist **b)
 {
 	while (n > 3)
 	{
 		smart_move(a, b);
+		print_dlists(*a, *b);
 		n--;
 	}
 	sort_three(a, b);
 	while (*b)
+	{
 		smart_move(b, a);
-	min_to_top(a, b);
+		print_dlists(*a, *b);
+	}
 }
 
 void	sort_control(int n, t_dlist **a, t_dlist **b)
@@ -102,10 +106,12 @@ void	sort_control(int n, t_dlist **a, t_dlist **b)
 		ps_rotate(a, 'a', b);
 	if (n == 3)
 		sort_three(a, b);
+	/*
 	if (n == 4)
 		sort_four(a, b);
 	if (n == 5)
 		sort_five(a, b);
-	if (n > 5)
+	*/
+	if (n > 3)
 		sort_n(n, a, b);
 }

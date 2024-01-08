@@ -30,7 +30,7 @@ all: $(NAME)
 $(NAME): $(LIBPATH) $(DLIST) $(SRCS)
 	$(CC) $(CFLAGS) -I$(LIBDIR) $(SRCS) $(LIBPATH) $(DLIST) -o $(NAME)
 
-db: $(LIBFT) $(SRCS)
+db: $(LIBPATH) $(DLIST) $(SRCS)
 	$(CC) $(CFLAGS) -I$(LIBDIR) $(SRCS) $(LIBPATH) $(DLIST) -o $(NAME) -g
 	make clean
 

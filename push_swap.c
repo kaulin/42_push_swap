@@ -6,43 +6,39 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 14:40:50 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/07 17:11:07 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/08 15:38:04 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*
-static void print_dlists(t_dlist *a, t_dlist *b)
+/* Rotates or reverses until ordered loop starts with smallest number */
+static void	min_to_top(t_dlist **list, t_dlist **other)
 {
-	ft_printf("---\nA: %d\n", dl_lstsize(a));
-	while (a)
-	{
-		ft_printf("%d\n", a->value);
-		a = a->next;
-	}
-	ft_printf("---\nB: %d\n", dl_lstsize(b));
-	while (b)
-	{
-		ft_printf("%d\n", b->value);
-		b = b->next;
-	}
-	ft_printf("---\n\n");
-}
+	int		jumps;
+	t_dlist	*node;
 
-static void print_dlist(t_dlist *list)
-{
-	while (list)
+	jumps = 0;
+	node = *list;
+	while (node->value > node->prev->value)
 	{
-		ft_printf("%d ", list->value);
-		list = list->next;
+		node = node->prev;
+		jumps++;
 	}
-	ft_printf("\n\n");
-	
+	node = *list;
+	while (node->next && node->value < node->next->value)
+	{
+		node = node->next;
+		jumps--;
+	}
+	while ((*list)->prev->value < (*list)->value)
+	{
+		if (jumps < 0)
+			ps_rrotate(list, 'a', other);
+		else
+			ps_rotate(list, 'a', other);
+	}
 }
-*/
-
-#include "push_swap.h"
 
 int	push_swap(int n, char *str[])
 {
@@ -65,6 +61,7 @@ int	push_swap(int n, char *str[])
 		return (0);
 	}
 	sort_control(n, &a, &b);
+	min_to_top(&a, &b);
 	dl_lstclear(&a);
 	return (0);
 }
