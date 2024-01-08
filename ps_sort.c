@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 15:27:27 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/08 15:34:35 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/08 18:03:59 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,69 +34,72 @@ static void	sort_three(t_dlist **a, t_dlist **b)
 			ps_rotate(a, 'a', b);
 		else
 		{
-			ps_rrotate(a, 'a', b);
+			ps_rotate(a, 'a', b);
 			ps_swap(a, 'a', b);
 		}
 	}
 	else
 		ps_swap(a, 'a', b);
 }
-/*
+
 static void	sort_four(t_dlist **a, t_dlist **b)
 {
-	ps_push(a, b, 'b');
+	ps_push(a, b);
 	sort_three(a, b);
 	if ((*b)->value > (*a)->prev->value)
 	{
-		ps_push(b, a, 'a');
+		ps_push(b, a);
 		ps_rotate(a, 'a', b);
 	}
 	else
 	{
 		while ((*b)->value > (*a)->value)
 			ps_rotate(a, 'a', b);
-		ps_push(b, a, 'a');
+		ps_push(b, a);
 	}
-	min_to_top(a, b);
 }
 
 static void	sort_five(t_dlist **a, t_dlist **b)
 {
-	ps_push(a, b, 'b');
-	ps_push(a, b, 'b');
+	int	pushed;
+
+	if ((*a)->value < (*a)->next->value)
+		ps_swap(a, 'a', b);
+	ps_push(a, b);
+	ps_push(a, b);
+	pushed = 2;
 	sort_three(a, b);
-	if ((*b)->value > (*b)->next->value)
-		ps_rotate(b, 'b', a);
-	while (*b)
+	while (pushed > 0)
 	{
 		if ((*b)->value < (*a)->value)
-			ps_push(b, a, 'a');
+		{
+			ps_push(b, a);
+			pushed--;
+		}
 		else if ((*b)->value > (*a)->prev->value
 			&& (*a)->prev->value > (*a)->value)
 		{
-			ps_push(b, a, 'a');
+			ps_push(b, a);
+			pushed--;
 			ps_rotate(a, 'a', b);
 		}
 		else
 			ps_rotate(a, 'a', b);
 	}
-	min_to_top(a, b);
 }
-*/
 
 static void	sort_n(int n, t_dlist **a, t_dlist **b)
 {
-	while (n > 3)
+	while (n > 5)
 	{
-		smart_move(a, b);
-		print_dlists(*a, *b);
+		ps_push(a, b);
+		//smart_move(a, b);
 		n--;
 	}
-	sort_three(a, b);
+	sort_five(a, b);
 	while (*b)
 	{
 		smart_move(b, a);
-		print_dlists(*a, *b);
 	}
 }
 
@@ -106,12 +109,10 @@ void	sort_control(int n, t_dlist **a, t_dlist **b)
 		ps_rotate(a, 'a', b);
 	if (n == 3)
 		sort_three(a, b);
-	/*
 	if (n == 4)
 		sort_four(a, b);
 	if (n == 5)
 		sort_five(a, b);
-	*/
-	if (n > 3)
+	if (n > 5)
 		sort_n(n, a, b);
 }

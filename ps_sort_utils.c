@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:33:20 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/08 15:48:31 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/08 17:21:23 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	check_order(t_dlist *list)
 		node = node->next;
 	return (node == min->prev);
 }
-
+/*
 static int	find_maxval(t_dlist *list)
 {
 	int	maxval;
@@ -55,6 +55,7 @@ static int	find_minval(t_dlist *list)
 	}
 	return (minval);
 }
+*/
 
 int	moves_to_top(t_dlist *list, t_dlist *node)
 {
@@ -76,21 +77,17 @@ int	moves_to_top(t_dlist *list, t_dlist *node)
 
 int	moves_to_pos (t_dlist *list, t_dlist *node)
 {
-	int		maxval;
-	int		minval;
 	t_dlist	*target;
 
 	if (!list)
 		return (0);
-	maxval = find_maxval(list);
-	minval = find_minval(list);
 	target = list;
-	if (node->value < minval && target->value == minval)
-		return (moves_to_top(list, target));
-	if (node->value > maxval && target->prev->value == maxval)
-		return (moves_to_top(list, target));
 	while (target->next)
 	{
+		if (node->value > target->prev->value && target->prev->value > target->value)
+			return (moves_to_top(list, target));
+		if (node->value < target->value && target->prev->value > target->value)
+			return (moves_to_top(list, target));
 		if (node->value > target->prev->value && node->value < target->value)
 			return (moves_to_top(list, target));
 		target = target->next;
