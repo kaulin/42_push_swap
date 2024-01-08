@@ -6,13 +6,13 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 15:47:55 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/06 16:02:15 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/07 16:27:03 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push(t_dlist **to, t_dlist **from)
+void	push(t_dlist **from, t_dlist **to)
 {
 	t_dlist	*node;
 

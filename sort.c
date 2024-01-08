@@ -6,14 +6,14 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 15:27:27 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/06 12:53:07 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/08 08:44:43 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /* CLEAN THIS UP */
-static void	sort_three(t_dlist **a)
+static void	sort_three(t_dlist **a, t_dlist **b)
 {
 	if (check_order(*a) && (*a)->value < (*a)->prev->value)
 		return ;
@@ -21,43 +21,43 @@ static void	sort_three(t_dlist **a)
 	{
 		if ((*a)->next->value > (*a)->prev->value
 			&& (*a)->value > (*a)->prev->value)
-			rra(a);
+			rrotate_x(a, 'a', b);
 		else
 		{
-			rra(a);
-			sa(a);
+			rrotate_x(a, 'a', b);
+			swap_x(a, 'a', b);
 		}
 	}
 	else if ((*a)->value > (*a)->prev->value)
 	{
 		if ((*a)->next->value < (*a)->prev->value)
-			ra(a);
+			rotate_x(a, 'a', b);
 		else
 		{
-			ra(a);
-			sa(a);
+			rrotate_x(a, 'a', b);
+			swap_x(a, 'a', b);
 		}
 	}
 	else
-		sa(a);
+		swap_x(a, 'a', b);
 }
 
 static void	sort_four(t_dlist **a, t_dlist **b)
 {
-	pb(a, b);
-	sort_three(a);
+	push_x(a, b, 'b');
+	sort_three(a, b);
 	if ((*b)->value > (*a)->prev->value)
 	{
-		pa(a, b);
-		ra(a);
+		push_x(b, a, 'a');
+		rotate_x(a, 'a', b);
 	}
 	else
 	{
 		while ((*b)->value > (*a)->value)
-			ra(a);
-		pa(a, b);
+			rotate_x(a, 'a', b);
+		pa(b, a);
 	}
-	correct_start(a);
+	min_to_top(a);
 }
 
 static void	sort_five(t_dlist **a, t_dlist **b)
@@ -66,39 +66,82 @@ static void	sort_five(t_dlist **a, t_dlist **b)
 	pb(a, b);
 	sort_three(a);
 	if ((*b)->value > (*b)->next->value)
-		rb(b);
+		rotate_x(b, 'b', a);
 	while (*b)
 	{
 		if ((*b)->value < (*a)->value)
-			pa(a, b);
+			push_x(b, a, 'a');
 		else if ((*b)->value > (*a)->prev->value
 			&& (*a)->prev->value > (*a)->value)
 		{
-			pa(a, b);
-			ra(a);
+			push_x(b, a, 'a');
+			rotate_x(a, 'a', b);
 		}
 		else
-			ra(a);
+			rotate_x(a, 'a', b);
 	}
-	correct_start(a);
+	min_to_top(a, b);
+}
+
+int	get_moves(t_dlist *from, t_dlist *node, t_dlist *to)
+{
+	int	to_moves;
+	int	from_moves;
+
+	from_moves = moves_to_top(from, dl_lstsize(from), node);
+	to_moves = moves_to_position(to, dl_lstsize(to), node);
+	if (from_moves >= 0 && to_moves >= 0)
+	{
+		if (from_moves > to_moves)
+			return (from_moves);
+		return (to_moves);
+	}
+	if (from_moves < 0 && to_moves < 0)
+	{
+		if (from_moves < to_moves)
+			return (-1 * from_moves);
+		return (-1 * to_moves);
+	}
+	return ()
+}
+
+void	smart_move(t_dlist **from, char f, t_dlist **to, char t)
+{
+	t_dlist	*node;
+	t_dlist	*best;
+	int	min_moves;
+	int moves;
+
+	node = *from;
+	min_moves = dl_lstsize(*from) + dl_lstsize(*to);
+	best = node;
+	while(node->next)
+	{
+		node = node->next;
+		moves = get_moves(*from, node, *to);
+		if (moves < min_moves)
+		{
+			min_moves = moves;
+			best = node;
+		}
+	}
+	do_moves(from, f, to, t, best)
+	push_x(to, t, from);
 }
 
 static void	sort_n(int n, t_dlist **a, t_dlist **b)
 {
-	int	jumps_to_min;
-
-	while (n)
+	while (n > 3)
 	{
-		jumps_to_min = find_min(n, *a);
-		rotate_n(jumps_to_min, a);
-		pb(a, b);
+		smart_move(a, 'a', b, 'b');
 		n--;
 	}
+	sort_three(a, b);
 	while (*b)
 	{
-		pa(a, b);
+		smart_move(b, 'b', a, 'a');
 	}
-	return ;
+	min_to_top(a, b);
 }
 
 void	sort_control(int n, t_dlist **a, t_dlist **b)
@@ -106,7 +149,7 @@ void	sort_control(int n, t_dlist **a, t_dlist **b)
 	if (n == 2)
 		ra(a);
 	if (n == 3)
-		sort_three(a);
+		sort_three(a, b);
 	if (n == 4)
 		sort_four(a, b);
 	if (n == 5)

@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 14:40:50 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/06 12:53:07 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/07 17:11:07 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	push_swap(int n, char *str[])
 	}
 	if (check_order(a))
 	{
-		correct_start(&a);
+		min_to_top(&a, &b);
 		dl_lstclear(&a);
 		return (0);
 	}

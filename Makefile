@@ -3,12 +3,9 @@ NAME = push_swap
 SRCS = main.c \
 	push_swap.c \
 	sort.c \
+	sort_moves.c \
 	sort_utils.c \
 	ps_utils.c \
-	ps_push.c \
-	ps_swap.c \
-	ps_rotate.c \
-	ps_rrotate.c \
 
 DL_SRCS = dlist_utils.c \
 	dlist_moves.c \
@@ -21,20 +18,22 @@ LIBFT = libft.a
 
 LIBDIR = ./libft/
 
+LIBPATH = $(LIBDIR)$(LIBFT)
+
 CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(DLIST) $(SRCS)
-	$(CC) $(CFLAGS) -I$(LIBDIR) $(SRCS) $(LIBDIR)$(LIBFT) $(DLIST) -o $(NAME)
+$(NAME): $(LIBPATH) $(DLIST) $(SRCS)
+	$(CC) $(CFLAGS) -I$(LIBDIR) $(SRCS) $(LIBPATH) $(DLIST) -o $(NAME)
 
 db: $(LIBFT) $(SRCS)
-	$(CC) $(CFLAGS) -I$(LIBDIR) $(SRCS) $(LIBDIR)$(LIBFT) $(DLIST) -o $(NAME) -g
+	$(CC) $(CFLAGS) -I$(LIBDIR) $(SRCS) $(LIBPATH) $(DLIST) -o $(NAME) -g
 	make clean
 
-$(LIBDIR)$(LIBFT): $(LIBFT)
+$(LIBPATH): $(LIBFT)
 
 $(LIBFT):
 	make -C $(LIBDIR)

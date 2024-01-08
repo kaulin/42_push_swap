@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:33:20 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/06 12:53:07 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/07 17:17:52 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	check_order(t_dlist *list)
 }
 
 /* Rotates or reverses until ordered loop starts with smallest number */
-void	correct_start(t_dlist **list)
+void	min_to_top(t_dlist **list, t_dlist **other)
 {
 	int		jumps;
 	t_dlist	*node;
@@ -50,36 +50,39 @@ void	correct_start(t_dlist **list)
 	while ((*list)->prev->value < (*list)->value)
 	{
 		if (jumps < 0)
-			rra(list);
+			rrotate_x(list, 'a', other);
 		else
-			ra(list);
+			rotate_x(list, 'a', other);
 	}
 }
 
-int	find_min(int n, t_dlist *list)
+int	moves_to_top(t_dlist *list, int n, t_dlist *node)
 {
-	int	min;
-	int	jumps;
-	int	jumps_to_min;
+	int	moves;
 
-	min = list->value;
-	jumps = 0;
-	jumps_to_min = 0;
-	list = list->next;
-	while (list)
+	moves = 0;
+	while (list != node)
 	{
-		jumps++;
-		if (list->value < min)
-		{
-			min = list->value;
-			jumps_to_min = jumps;
-		}
+		moves++;
 		list = list->next;
 	}
-	if (jumps_to_min < n - jumps_to_min)
-		return (jumps_to_min);
+	if (moves < n - moves)
+		return (moves);
 	else
-		return (-1 * (n - jumps_to_min));
+		return (-1 * (n - moves));
+}
+
+int	moves_to_position (t_dlist *list, int n, t_dlist *node)
+{
+	t_dlist	*target;
+
+	target = list;
+	if ((node->value < target->value && node->value < target->prev->value)
+		|| (node->value > target->value && node->value > target->prev->value))
+		return (moves_to_top(list, n, target));
+	while (node->value > target->value && target->next)
+		target = target->next;
+	return (moves_to_top(list, n, target));
 }
 
 void	rotate_n(int jumps, t_dlist **list)
