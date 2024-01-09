@@ -6,13 +6,12 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 15:27:27 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/08 18:03:59 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/09 07:59:46 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* CLEAN THIS UP */
 static void	sort_three(t_dlist **a, t_dlist **b)
 {
 	if (check_order(*a) && (*a)->value < (*a)->prev->value)
@@ -93,7 +92,6 @@ static void	sort_n(int n, t_dlist **a, t_dlist **b)
 	while (n > 5)
 	{
 		ps_push(a, b);
-		//smart_move(a, b);
 		n--;
 	}
 	sort_five(a, b);

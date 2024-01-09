@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 15:47:55 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/07 16:27:03 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/09 07:55:30 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,3 @@ void	rrotate(t_dlist **list)
 	*list = (*list)->prev;
 	(*list)->prev->next = NULL;
 }
-

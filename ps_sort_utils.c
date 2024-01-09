@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:33:20 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/08 17:21:23 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/09 08:03:04 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	moves_to_top(t_dlist *list, t_dlist *node)
 		return (-1 * (n - moves));
 }
 
-int	moves_to_pos (t_dlist *list, t_dlist *node)
+int	moves_to_pos(t_dlist *list, t_dlist *node)
 {
 	t_dlist	*target;
 
@@ -84,7 +84,8 @@ int	moves_to_pos (t_dlist *list, t_dlist *node)
 	target = list;
 	while (target->next)
 	{
-		if (node->value > target->prev->value && target->prev->value > target->value)
+		if (node->value > target->prev->value
+			&& target->prev->value > target->value)
 			return (moves_to_top(list, target));
 		if (node->value < target->value && target->prev->value > target->value)
 			return (moves_to_top(list, target));

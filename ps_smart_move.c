@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 09:24:09 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/08 15:28:40 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/09 07:59:15 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	get_moves(t_dlist *from, t_dlist *node, t_dlist *to)
 	return (ft_abs(from_m) + ft_abs(to_m));
 }
 
-static void	do_common_moves(t_dlist **from, t_dlist **to, int *from_m, int *to_m)
+static void	do_doub_moves(t_dlist **from, t_dlist **to, int *from_m, int *to_m)
 {
 	while (*from_m < 0 && *to_m < 0)
 	{
@@ -44,7 +44,7 @@ static void	do_common_moves(t_dlist **from, t_dlist **to, int *from_m, int *to_m
 		(*from_m)++;
 		(*to_m)++;
 	}
-	while(*from_m > 0 && *to_m > 0)
+	while (*from_m > 0 && *to_m > 0)
 	{
 		ps_rotate(from, 'r', to);
 		(*from_m)--;
@@ -54,13 +54,13 @@ static void	do_common_moves(t_dlist **from, t_dlist **to, int *from_m, int *to_m
 
 static void	do_moves(t_dlist **from, t_dlist **to, int from_m, int to_m)
 {
-	do_common_moves(from, to, &from_m, &to_m);
+	do_doub_moves(from, to, &from_m, &to_m);
 	while (from_m < 0)
 	{
 		ps_rrotate(from, (*from)->stack, to);
 		from_m++;
 	}
-	while(from_m > 0)
+	while (from_m > 0)
 	{
 		ps_rotate(from, (*from)->stack, to);
 		from_m--;
@@ -70,7 +70,7 @@ static void	do_moves(t_dlist **from, t_dlist **to, int from_m, int to_m)
 		ps_rrotate(to, (*to)->stack, from);
 		to_m++;
 	}
-	while(to_m > 0)
+	while (to_m > 0)
 	{
 		ps_rotate(to, (*to)->stack, from);
 		to_m--;
@@ -81,13 +81,13 @@ void	smart_move(t_dlist **from, t_dlist **to)
 {
 	t_dlist	*node;
 	t_dlist	*best;
-	int	min_moves;
-	int moves;
+	int		min_moves;
+	int		moves;
 
 	node = *from;
 	min_moves = get_moves(*from, node, *to);
 	best = node;
-	while(min_moves != 0 && node->next)
+	while (min_moves != 0 && node->next)
 	{
 		node = node->next;
 		moves = get_moves(*from, node, *to);

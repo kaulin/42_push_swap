@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 12:45:14 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/06 12:09:53 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/09 08:04:27 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 int	ft_putendl_fd(char *s, int fd)
 {
-	int	written = 0;
+	int	written;
+
+	written = 0;
 	written = write(fd, s, ft_strlen(s));
 	if (written < 0)
 		return (-1);

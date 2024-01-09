@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 16:10:54 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/08 15:34:23 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/09 08:01:54 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		push_swap(int n, char *str[]);
 void	smart_move(t_dlist **from, t_dlist **to);
 void	sort_control(int n, t_dlist **a, t_dlist **b);
 int		check_order(t_dlist *list);
-int		moves_to_pos (t_dlist *list, t_dlist *node);
+int		moves_to_pos(t_dlist *list, t_dlist *node);
 int		moves_to_top(t_dlist *list, t_dlist *node);
 t_dlist	*make_list(int n, char *str[]);
 t_dlist	*clean(t_dlist **list);
