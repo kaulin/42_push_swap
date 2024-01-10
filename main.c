@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 14:41:06 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/04 15:29:01 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/10 10:56:48 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,6 @@ int	main(int argc, char *argv[])
 		error = push_swap(argc, argv);
 	}
 	if (error)
-		return (write(2, "Error\n", 7));
+		return (ft_putendl_fd("Error", 2));
 	return (0);
 }

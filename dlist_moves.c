@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 15:47:55 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/09 07:55:30 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/10 11:03:36 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	push(t_dlist **from, t_dlist **to)
 {
 	t_dlist	*node;
 
+	if (!(*from))
+		return ;
 	node = *from;
 	if (node->next)
 		node->next->prev = node->prev;
@@ -27,6 +29,8 @@ void	swap(t_dlist **list)
 {
 	t_dlist	*node;
 
+	if (!(*list))
+		return ;
 	node = (*list)->next;
 	(*list)->next->next->prev = *list;
 	(*list)->next = (*list)->next->next;
@@ -35,13 +39,17 @@ void	swap(t_dlist **list)
 
 void	rotate(t_dlist **list)
 {
+	if (!(*list))
+		return ;
 	(*list)->prev->next = *list;
 	*list = (*list)->next;
 	(*list)->prev->next = NULL;
 }
 
-void	rrotate(t_dlist **list)
+void	revrot(t_dlist **list)
 {
+	if (!(*list))
+		return ;
 	(*list)->prev->next = *list;
 	*list = (*list)->prev;
 	(*list)->prev->next = NULL;

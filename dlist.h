@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 15:56:16 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/08 10:36:56 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/09 15:22:27 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ void	dl_lstclear(t_dlist **lst);
 void	push(t_dlist **to, t_dlist **from);
 void	swap(t_dlist **list);
 void	rotate(t_dlist **list);
-void	rrotate(t_dlist **list);
+void	revrot(t_dlist **list);
 
 #endif

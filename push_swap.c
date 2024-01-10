@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 14:40:50 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/08 17:21:51 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/10 10:47:21 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	min_to_top(t_dlist **list, t_dlist **other)
 	while ((*list)->prev->value < (*list)->value)
 	{
 		if (jumps < 0)
-			ps_rrotate(list, 'a', other);
+			ps_revrot(list, 'a', other);
 		else
 			ps_rotate(list, 'a', other);
 	}
@@ -66,7 +66,7 @@ int	push_swap(int n, char *str[])
 	return (0);
 }
 
-// Used libft functions: ft_printf, ft_isdigit, ft_atoi, ft_atol, ft_split, ft_strchr
+// Used libft functions: ft_putendl_fd, ft_putchar_fd, ft_putstr_fd, ft_abs, ft_isdigit, ft_atol, ft_split, ft_strchr
 
 /*
 required: sort   3 numbers with <=     3 operations

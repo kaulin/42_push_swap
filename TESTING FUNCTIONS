@@ -1,0 +1,27 @@
+
+void	print_dlist(t_dlist *list)
+{
+	while (list)
+	{
+		ft_printf("%d ", list->value);
+		list = list->next;
+	}
+	ft_printf("\n\n");
+}
+
+void	print_dlists(t_dlist *a, t_dlist *b)
+{
+	ft_printf("---\nA: %d\n", dl_lstsize(a));
+	while (a)
+	{
+		ft_printf("%d\n", a->value);
+		a = a->next;
+	}
+	ft_printf("---\nB: %d\n", dl_lstsize(b));
+	while (b)
+	{
+		ft_printf("%d\n", b->value);
+		b = b->next;
+	}
+	ft_printf("---\n\n");
+}

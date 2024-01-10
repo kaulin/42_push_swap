@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:33:20 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/09 08:03:04 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/09 19:38:18 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,35 +27,6 @@ int	check_order(t_dlist *list)
 		node = node->next;
 	return (node == min->prev);
 }
-/*
-static int	find_maxval(t_dlist *list)
-{
-	int	maxval;
-
-	maxval = list->value;
-	while (list->next)
-	{
-		list = list->next;
-		if (list->value > maxval)
-			maxval = list->value;
-	}
-	return (maxval);
-}
-
-static int	find_minval(t_dlist *list)
-{
-	int	minval;
-
-	minval = list->value;
-	while (list->next)
-	{
-		list = list->next;
-		if (list->value < minval)
-			minval = list->value;
-	}
-	return (minval);
-}
-*/
 
 int	moves_to_top(t_dlist *list, t_dlist *node)
 {
@@ -72,10 +43,31 @@ int	moves_to_top(t_dlist *list, t_dlist *node)
 	if (moves < n - moves)
 		return (moves);
 	else
-		return (-1 * (n - moves));
+		return (moves - n);
 }
 
-int	moves_to_pos(t_dlist *list, t_dlist *node)
+int	m_to_pos_d(t_dlist *list, t_dlist *node)
+{
+	t_dlist	*target;
+
+	if (!list)
+		return (0);
+	target = list;
+	while (target->next)
+	{
+		if (node->value > target->value && node->value < target->prev->value)
+			return (moves_to_top(list, target));
+		if (node->value > target->value && target->value > target->prev->value)
+			return (moves_to_top(list, target));
+		if (node->value < target->value && node->value < target->prev->value
+			&& target->prev->value < target->value)
+			return (moves_to_top(list, target));
+		target = target->next;
+	}
+	return (moves_to_top(list, target));
+}
+
+int	m_to_pos_a(t_dlist *list, t_dlist *node)
 {
 	t_dlist	*target;
 

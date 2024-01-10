@@ -6,19 +6,48 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 09:24:09 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/09 07:59:15 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/09 19:38:18 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	get_moves(t_dlist *from, t_dlist *node, t_dlist *to)
+static void	double_check(int from_s, int to_s, int *from_m, int *to_m)
+{
+	int	temp_f;
+	int	temp_t;
+
+	temp_f = *from_m;
+	temp_t = *to_m;
+	if (*to_m == 0 || *from_m == 0)
+		return ;
+	if ((*from_m > 0 && *to_m > 0) || (*from_m < 0 && *to_m < 0))
+		return ;
+	if (*from_m > 0 && *from_m - from_s > *to_m)
+		temp_f = *from_m - from_s;
+	if (*from_m > 0 && to_s + *to_m < *from_m)
+		temp_t = to_s + *to_m;
+	if (*from_m < 0 && *to_m - to_s > *from_m)
+		temp_t = *to_m - to_s;
+	if (*from_m < 0 && from_s + *from_m < *to_m)
+		temp_f = from_s + *from_m;
+	if (ft_abs(temp_f) < ft_abs(temp_t))
+		*from_m = temp_f;
+	if (ft_abs(temp_f) > ft_abs(temp_t))
+		*to_m = temp_t;
+}
+
+static int	get_moves(t_dlist *from, t_dlist *node, t_dlist *to, int dir)
 {
 	int	to_m;
 	int	from_m;
 
 	from_m = moves_to_top(from, node);
-	to_m = moves_to_pos(to, node);
+	if (dir)
+		to_m = m_to_pos_a(to, node);
+	else
+		to_m = m_to_pos_d(to, node);
+	double_check(dl_lstsize(from), dl_lstsize(to), &from_m, &to_m);
 	if (from_m == 0 && to_m == 0)
 		return (0);
 	if (from_m >= 0 && to_m >= 0)
@@ -40,7 +69,7 @@ static void	do_doub_moves(t_dlist **from, t_dlist **to, int *from_m, int *to_m)
 {
 	while (*from_m < 0 && *to_m < 0)
 	{
-		ps_rrotate(from, 'r', to);
+		ps_revrot(from, 'r', to);
 		(*from_m)++;
 		(*to_m)++;
 	}
@@ -54,10 +83,11 @@ static void	do_doub_moves(t_dlist **from, t_dlist **to, int *from_m, int *to_m)
 
 static void	do_moves(t_dlist **from, t_dlist **to, int from_m, int to_m)
 {
+	double_check(dl_lstsize(*from), dl_lstsize(*to), &from_m, &to_m);
 	do_doub_moves(from, to, &from_m, &to_m);
 	while (from_m < 0)
 	{
-		ps_rrotate(from, (*from)->stack, to);
+		ps_revrot(from, (*from)->stack, to);
 		from_m++;
 	}
 	while (from_m > 0)
@@ -67,7 +97,7 @@ static void	do_moves(t_dlist **from, t_dlist **to, int from_m, int to_m)
 	}
 	while (to_m < 0)
 	{
-		ps_rrotate(to, (*to)->stack, from);
+		ps_revrot(to, (*to)->stack, from);
 		to_m++;
 	}
 	while (to_m > 0)
@@ -77,7 +107,7 @@ static void	do_moves(t_dlist **from, t_dlist **to, int from_m, int to_m)
 	}
 }
 
-void	smart_move(t_dlist **from, t_dlist **to)
+void	smart_move(t_dlist **from, t_dlist **to, int dir)
 {
 	t_dlist	*node;
 	t_dlist	*best;
@@ -85,18 +115,21 @@ void	smart_move(t_dlist **from, t_dlist **to)
 	int		moves;
 
 	node = *from;
-	min_moves = get_moves(*from, node, *to);
+	min_moves = get_moves(*from, node, *to, dir);
 	best = node;
 	while (min_moves != 0 && node->next)
 	{
 		node = node->next;
-		moves = get_moves(*from, node, *to);
+		moves = get_moves(*from, node, *to, dir);
 		if (moves < min_moves)
 		{
 			min_moves = moves;
 			best = node;
 		}
 	}
-	do_moves(from, to, moves_to_top(*from, best), moves_to_pos(*to, best));
+	if (dir)
+		do_moves(from, to, moves_to_top(*from, best), m_to_pos_a(*to, best));
+	else
+		do_moves(from, to, moves_to_top(*from, best), m_to_pos_d(*to, best));
 	ps_push(from, to);
 }
