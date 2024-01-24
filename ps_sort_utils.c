@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:33:20 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/24 11:39:16 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/24 13:58:01 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,11 @@ int	m_to_pos_d(t_dlist *list, t_dlist *node)
 	target = list;
 	while (target->next)
 	{
+		if (target->value > target->prev->value
+			&& (node->value > target->value
+			|| node->value < target->prev->value))
+				return (m_to_top(list, target));
 		if (node->value > target->value && node->value < target->prev->value)
-			return (m_to_top(list, target));
-		if (node->value > target->value && target->value > target->prev->value)
-			return (m_to_top(list, target));
-		if (node->value < target->value && node->value < target->prev->value
-			&& target->prev->value < target->value)
 			return (m_to_top(list, target));
 		target = target->next;
 	}
@@ -76,12 +75,11 @@ int	m_to_pos_a(t_dlist *list, t_dlist *node)
 	target = list;
 	while (target->next)
 	{
-		if (node->value > target->prev->value
-			&& target->prev->value > target->value)
-			return (m_to_top(list, target));
-		if (node->value < target->value && target->prev->value > target->value)
-			return (m_to_top(list, target));
-		if (node->value > target->prev->value && node->value < target->value)
+		if (target->value < target->prev->value
+			&& (node->value < target->value
+			|| node->value > target->prev->value))
+				return (m_to_top(list, target));
+		if (node->value < target->value && node->value > target->prev->value)
 			return (m_to_top(list, target));
 		target = target->next;
 	}

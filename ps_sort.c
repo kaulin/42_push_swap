@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 15:27:27 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/24 13:32:19 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/24 13:52:59 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static void	print(t_dlist **to, t_dlist **from)
 		node = node->next;
 	}
 	write(1, "\n", 1);
-}*/
+}
+*/
 
 static void	sort_three(t_dlist **a, t_dlist **b)
 {
@@ -109,10 +110,10 @@ static void	sort_n(int n, t_dlist **a, t_dlist **b)
 		smart_move(a, b, 0);
 		n--;
 	}
-	sort_three(a, b);
+	sort_five(a, b);
 	while (*b)
 	{
-		// print(a, b);
+		//print(a, b);
 		if ((*a)->value < (*a)->prev->value
 			&& ((*b)->value < (*a)->value || (*b)->value > (*a)->prev->value))
 			ps_push(b, a);
