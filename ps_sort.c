@@ -6,11 +6,26 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 15:27:27 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/09 19:38:43 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/24 13:32:19 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+static void	print(t_dlist **to, t_dlist **from)
+{
+	t_dlist	*node;
+	
+	node = *to;
+	ft_printf("Moving %d to: ", (*from)->value);
+	while (node)
+	{
+		ft_printf("%d ", node->value);
+		node = node->next;
+	}
+	write(1, "\n", 1);
+}*/
 
 static void	sort_three(t_dlist **a, t_dlist **b)
 {
@@ -94,10 +109,18 @@ static void	sort_n(int n, t_dlist **a, t_dlist **b)
 		smart_move(a, b, 0);
 		n--;
 	}
-	sort_five(a, b);
+	sort_three(a, b);
 	while (*b)
 	{
-		smart_move(b, a, 1);
+		// print(a, b);
+		if ((*a)->value < (*a)->prev->value
+			&& ((*b)->value < (*a)->value || (*b)->value > (*a)->prev->value))
+			ps_push(b, a);
+		else if ((*b)->value < (*a)->value && (*b)->value > (*a)->prev->value)
+			ps_push(b, a);
+		else
+			ps_revrot(a, 'a', b);
+		//smart_move(b, a, 1);
 	}
 }
 
@@ -105,12 +128,12 @@ void	sort_control(int n, t_dlist **a, t_dlist **b)
 {
 	if (n == 2)
 		ps_rotate(a, 'a', b);
-	if (n == 3)
+	else if (n == 3)
 		sort_three(a, b);
-	if (n == 4)
+	else if (n == 4)
 		sort_four(a, b);
-	if (n == 5)
+	else if (n == 5)
 		sort_five(a, b);
-	if (n > 5)
+	else
 		sort_n(n, a, b);
 }

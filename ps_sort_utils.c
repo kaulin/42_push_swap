@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:33:20 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/09 19:38:18 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/24 11:39:16 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	check_order(t_dlist *list)
 	return (node == min->prev);
 }
 
-int	moves_to_top(t_dlist *list, t_dlist *node)
+int	m_to_top(t_dlist *list, t_dlist *node)
 {
 	int	n;
 	int	moves;
@@ -56,15 +56,15 @@ int	m_to_pos_d(t_dlist *list, t_dlist *node)
 	while (target->next)
 	{
 		if (node->value > target->value && node->value < target->prev->value)
-			return (moves_to_top(list, target));
+			return (m_to_top(list, target));
 		if (node->value > target->value && target->value > target->prev->value)
-			return (moves_to_top(list, target));
+			return (m_to_top(list, target));
 		if (node->value < target->value && node->value < target->prev->value
 			&& target->prev->value < target->value)
-			return (moves_to_top(list, target));
+			return (m_to_top(list, target));
 		target = target->next;
 	}
-	return (moves_to_top(list, target));
+	return (m_to_top(list, target));
 }
 
 int	m_to_pos_a(t_dlist *list, t_dlist *node)
@@ -78,12 +78,12 @@ int	m_to_pos_a(t_dlist *list, t_dlist *node)
 	{
 		if (node->value > target->prev->value
 			&& target->prev->value > target->value)
-			return (moves_to_top(list, target));
+			return (m_to_top(list, target));
 		if (node->value < target->value && target->prev->value > target->value)
-			return (moves_to_top(list, target));
+			return (m_to_top(list, target));
 		if (node->value > target->prev->value && node->value < target->value)
-			return (moves_to_top(list, target));
+			return (m_to_top(list, target));
 		target = target->next;
 	}
-	return (moves_to_top(list, target));
+	return (m_to_top(list, target));
 }

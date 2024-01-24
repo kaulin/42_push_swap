@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 16:28:40 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/10 11:00:53 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/24 11:38:04 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	ps_push(t_dlist **from, t_dlist **to)
 	ft_putstr_fd("p", 1);
 	ft_putchar_fd((*to)->stack, 1);
 	ft_putstr_fd("\n", 1);
-	//ft_printf("p%c\n", (*to)->stack);
 }
 
 void	ps_swap(t_dlist **this, char x, t_dlist **other)
@@ -37,7 +36,6 @@ void	ps_swap(t_dlist **this, char x, t_dlist **other)
 	ft_putstr_fd("s", 1);
 	ft_putchar_fd(x, 1);
 	ft_putstr_fd("\n", 1);
-	//ft_printf("s%c\n", x);
 }
 
 void	ps_rotate(t_dlist **this, char x, t_dlist **other)
@@ -52,7 +50,6 @@ void	ps_rotate(t_dlist **this, char x, t_dlist **other)
 	ft_putstr_fd("r", 1);
 	ft_putchar_fd(x, 1);
 	ft_putstr_fd("\n", 1);
-	//ft_printf("r%c\n", x);
 }
 
 void	ps_revrot(t_dlist **this, char x, t_dlist **other)
@@ -67,5 +64,4 @@ void	ps_revrot(t_dlist **this, char x, t_dlist **other)
 	ft_putstr_fd("rr", 1);
 	ft_putchar_fd(x, 1);
 	ft_putstr_fd("\n", 1);
-	//ft_printf("rr%c\n", x);
 }

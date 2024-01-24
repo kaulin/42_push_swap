@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 09:24:09 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/09 19:38:18 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/24 11:22:00 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	get_moves(t_dlist *from, t_dlist *node, t_dlist *to, int dir)
 	int	to_m;
 	int	from_m;
 
-	from_m = moves_to_top(from, node);
+	from_m = m_to_top(from, node);
 	if (dir)
 		to_m = m_to_pos_a(to, node);
 	else
@@ -128,8 +128,8 @@ void	smart_move(t_dlist **from, t_dlist **to, int dir)
 		}
 	}
 	if (dir)
-		do_moves(from, to, moves_to_top(*from, best), m_to_pos_a(*to, best));
+		do_moves(from, to, m_to_top(*from, best), m_to_pos_a(*to, best));
 	else
-		do_moves(from, to, moves_to_top(*from, best), m_to_pos_d(*to, best));
+		do_moves(from, to, m_to_top(*from, best), m_to_pos_d(*to, best));
 	ps_push(from, to);
 }
