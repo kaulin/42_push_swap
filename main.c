@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 14:41:06 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/25 09:07:55 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/25 11:41:47 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,16 @@ static void	clean_arr(char **arr)
 	free(arr);
 }
 
+/*
+Combines all parameters into one big string, where they are separated 
+by spaces.
+*/
 static int	make_string(int argc, char *argv[], char **string)
 {
 	int		index;
 	char	*temp;
 
 	index = 1;
-	*string = "";
 	while (index < argc)
 	{
 		temp = ft_strjoin(*string, argv[index]);
@@ -37,6 +40,7 @@ static int	make_string(int argc, char *argv[], char **string)
 			free(*string);
 			return (1);
 		}
+		free(*string);
 		*string = temp;
 		temp = ft_strjoin(*string, " ");
 		if (!temp)
@@ -44,6 +48,7 @@ static int	make_string(int argc, char *argv[], char **string)
 			free(*string);
 			return (1);
 		}
+		free(*string);
 		*string = temp;
 		index++;
 	}
@@ -58,6 +63,10 @@ int	main(int argc, char *argv[])
 
 	if (argc < 2)
 		return (0);
+	string = malloc(1);
+	if (!string)
+		return (ft_putendl_fd("Error", 2));
+	*string = 0;
 	error = make_string(argc, argv, &string);
 	if (error)
 		return (ft_putendl_fd("Error", 2));

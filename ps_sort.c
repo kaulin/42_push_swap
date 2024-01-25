@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 15:27:27 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/25 10:09:00 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/25 11:50:12 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ Sorts a list of more than 5 elements.
 */
 static void	sort_n(int n, t_dlist **a, t_dlist **b)
 {
+	if ((*a)->prev->value < (*a)->prev->prev->value)
+		ps_revrot(a, 'a', b);
 	while (n > 5)
 	{
 		smart_move(a, b, 0);
