@@ -49,7 +49,19 @@ push_swap
 .tmp_versions/
 modules.order
 Module.symvers
+
+# Local files
 Mkfile.old
 dkms.conf
 traces.txt
-0
+all_fives.sh
+all_fours.sh
+checker_Mac
+log.txt
+problematic_cases.txt
+push_swap_test.sh
+test.c
+TESTING FUNCTIONS
+.vscode/launch.json
+.vscode/settings.json
+.vscode/tasks.json
