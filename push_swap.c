@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 14:40:50 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/10 10:47:21 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/25 08:42:10 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static void	min_to_top(t_dlist **list, t_dlist **other)
 
 	jumps = 0;
 	node = *list;
+	if (node->value <= node->prev->value)
+		return ;
 	while (node->value > node->prev->value)
 	{
 		node = node->prev;
@@ -40,33 +42,30 @@ static void	min_to_top(t_dlist **list, t_dlist **other)
 	}
 }
 
-int	push_swap(int n, char *str[])
+int	push_swap(char *str[])
 {
 	t_dlist	*a;
 	t_dlist	*b;
+	int		len;
 
-	a = make_list(n, str);
+	a = make_list(str);
 	if (!a)
 		return (1);
 	b = NULL;
-	if (n == 1 || (check_order(a) && a->value < a->prev->value))
-	{
-		dl_lstclear(&a);
-		return (0);
-	}
-	if (check_order(a))
+	len = dl_lstsize(a);
+	if (len == 1 || check_order(a))
 	{
 		min_to_top(&a, &b);
 		dl_lstclear(&a);
 		return (0);
 	}
-	sort_control(n, &a, &b);
+	sort_control(len, &a, &b);
 	min_to_top(&a, &b);
 	dl_lstclear(&a);
 	return (0);
 }
 
-// Used libft functions: ft_putendl_fd, ft_putchar_fd, ft_putstr_fd, ft_abs, ft_isdigit, ft_atol, ft_split, ft_strchr
+// Used libft functions: ft_strljoin, ft_strlcat, ft_strlen, ft_putendl_fd, ft_putchar_fd, ft_putstr_fd, ft_abs, ft_isdigit, ft_atol, ft_split, ft_strchr
 
 /*
 required: sort   3 numbers with <=     3 operations

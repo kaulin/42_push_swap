@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 14:40:50 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/09 19:39:38 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/25 07:51:38 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	check_dup(t_dlist *list, long num)
 	return (0);
 }
 
-t_dlist	*make_list(int n, char *str[])
+t_dlist	*make_list(char *str[])
 {
 	int			index;
 	long int	value;
@@ -63,7 +63,7 @@ t_dlist	*make_list(int n, char *str[])
 
 	index = 0;
 	list = NULL;
-	while (index < n)
+	while (str[index])
 	{
 		if (check_form(str[index]))
 			return (clean(&list));

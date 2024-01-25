@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 16:10:54 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/24 11:10:58 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/25 07:51:48 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 # include "libft/libft.h"
 # include "dlist.h"
 
-int		push_swap(int n, char *str[]);
+int		push_swap(char *str[]);
 void	smart_move(t_dlist **from, t_dlist **to, int dir);
 void	sort_control(int n, t_dlist **a, t_dlist **b);
 int		check_order(t_dlist *list);
 int		m_to_pos_a(t_dlist *list, t_dlist *node);
 int		m_to_pos_d(t_dlist *list, t_dlist *node);
 int		m_to_top(t_dlist *list, t_dlist *node);
-t_dlist	*make_list(int n, char *str[]);
+t_dlist	*make_list(char *str[]);
 t_dlist	*clean(t_dlist **list);
 void	ps_push(t_dlist **from, t_dlist **to);
 void	ps_swap(t_dlist **this, char x, t_dlist **other);
