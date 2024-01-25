@@ -6,12 +6,15 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 09:24:09 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/24 11:22:00 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/25 10:01:22 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+Checks for and imlements a more economic combination of rotations.
+*/
 static void	double_check(int from_s, int to_s, int *from_m, int *to_m)
 {
 	int	temp_f;
@@ -37,6 +40,9 @@ static void	double_check(int from_s, int to_s, int *from_m, int *to_m)
 		*to_m = temp_t;
 }
 
+/*
+Returns number of stack rotations required before pushing.
+*/
 static int	get_moves(t_dlist *from, t_dlist *node, t_dlist *to, int dir)
 {
 	int	to_m;
@@ -65,6 +71,9 @@ static int	get_moves(t_dlist *from, t_dlist *node, t_dlist *to, int dir)
 	return (ft_abs(from_m) + ft_abs(to_m));
 }
 
+/*
+If both stacks are rotated in the same direction, use the combined commands.
+*/
 static void	do_doub_moves(t_dlist **from, t_dlist **to, int *from_m, int *to_m)
 {
 	while (*from_m < 0 && *to_m < 0)
@@ -81,6 +90,9 @@ static void	do_doub_moves(t_dlist **from, t_dlist **to, int *from_m, int *to_m)
 	}
 }
 
+/*
+Executes the given rotations for both stacks, also checks for double moves.
+*/
 static void	do_moves(t_dlist **from, t_dlist **to, int from_m, int to_m)
 {
 	double_check(dl_lstsize(*from), dl_lstsize(*to), &from_m, &to_m);
@@ -107,6 +119,10 @@ static void	do_moves(t_dlist **from, t_dlist **to, int from_m, int to_m)
 	}
 }
 
+/*
+Finds the node that takes the least amount of moves to push to the correct
+location and executes those moves.
+*/
 void	smart_move(t_dlist **from, t_dlist **to, int dir)
 {
 	t_dlist	*node;

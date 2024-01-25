@@ -6,18 +6,24 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 14:40:50 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/25 07:51:38 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/25 10:13:36 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+Clears the list and returns NULL.
+*/
 t_dlist	*clean(t_dlist **list)
 {
 	dl_lstclear(list);
 	return (NULL);
 }
 
+/*
+Checks that the string complies with number format.
+*/
 static int	check_form(char *str)
 {
 	int	i;
@@ -43,6 +49,9 @@ static int	check_form(char *str)
 	return (0);
 }
 
+/*
+Checks that the number is not already in the list.
+*/
 static int	check_dup(t_dlist *list, long num)
 {
 	while (list)
@@ -54,6 +63,9 @@ static int	check_dup(t_dlist *list, long num)
 	return (0);
 }
 
+/*
+Makes a double linked list of integers from an array of an array of strings.
+*/
 t_dlist	*make_list(char *str[])
 {
 	int			index;

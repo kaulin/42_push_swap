@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 15:27:27 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/25 09:10:06 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/25 10:09:00 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,9 @@ static void	sort_five(t_dlist **a, t_dlist **b)
 	}
 }
 
+/*
+Sorts a list of more than 5 elements.
+*/
 static void	sort_n(int n, t_dlist **a, t_dlist **b)
 {
 	while (n > 5)
@@ -107,6 +110,9 @@ static void	sort_n(int n, t_dlist **a, t_dlist **b)
 	}
 }
 
+/*
+Chooses the sorting algorithm based on the number of list elements.
+*/
 void	sort_control(int n, t_dlist **a, t_dlist **b)
 {
 	if (n == 2)

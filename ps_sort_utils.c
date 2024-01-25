@@ -6,13 +6,15 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:33:20 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/25 09:14:20 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/25 10:02:01 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*	Check to see if the numbers in the loop are in ascending order. */
+/*
+Checks to see if the numbers in the double linked list are in ascending order.
+*/
 int	check_order(t_dlist *list)
 {
 	t_dlist	*min;
@@ -46,6 +48,10 @@ int	m_to_top(t_dlist *list, t_dlist *node)
 		return (moves - n);
 }
 
+/*
+Returns the number of rotations needed so that the node can be pushed into a
+descending list.
+*/
 int	m_to_pos_d(t_dlist *list, t_dlist *node)
 {
 	t_dlist	*target;
@@ -66,6 +72,10 @@ int	m_to_pos_d(t_dlist *list, t_dlist *node)
 	return (m_to_top(list, target));
 }
 
+/*
+Returns the number of rotations needed so that the node can be pushed into an 
+ascending list.
+*/
 int	m_to_pos_a(t_dlist *list, t_dlist *node)
 {
 	t_dlist	*target;

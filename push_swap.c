@@ -6,13 +6,16 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 14:40:50 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/25 09:14:55 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/25 10:15:37 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* Rotates or reverses until ordered loop starts with smallest number */
+/*
+Rotates or reverses until the loop starts with smallest number. Loop has to be 
+already in ascending order.
+*/
 static void	min_to_top(t_dlist **list, t_dlist **other)
 {
 	int		jumps;
