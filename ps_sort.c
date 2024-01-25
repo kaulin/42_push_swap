@@ -6,27 +6,11 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 15:27:27 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/24 13:52:59 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/25 09:10:06 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/*
-static void	print(t_dlist **to, t_dlist **from)
-{
-	t_dlist	*node;
-	
-	node = *to;
-	ft_printf("Moving %d to: ", (*from)->value);
-	while (node)
-	{
-		ft_printf("%d ", node->value);
-		node = node->next;
-	}
-	write(1, "\n", 1);
-}
-*/
 
 static void	sort_three(t_dlist **a, t_dlist **b)
 {
@@ -113,7 +97,6 @@ static void	sort_n(int n, t_dlist **a, t_dlist **b)
 	sort_five(a, b);
 	while (*b)
 	{
-		//print(a, b);
 		if ((*a)->value < (*a)->prev->value
 			&& ((*b)->value < (*a)->value || (*b)->value > (*a)->prev->value))
 			ps_push(b, a);
@@ -121,7 +104,6 @@ static void	sort_n(int n, t_dlist **a, t_dlist **b)
 			ps_push(b, a);
 		else
 			ps_revrot(a, 'a', b);
-		//smart_move(b, a, 1);
 	}
 }
 

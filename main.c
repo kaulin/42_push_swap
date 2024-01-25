@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 14:41:06 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/25 08:48:34 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/25 09:07:55 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	main(int argc, char *argv[])
 	char	*string;
 	char	**array;
 	int		error;
-	
+
 	if (argc < 2)
 		return (0);
 	error = make_string(argc, argv, &string);

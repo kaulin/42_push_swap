@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 14:40:50 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/25 08:42:10 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/25 09:14:55 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,34 +64,3 @@ int	push_swap(char *str[])
 	dl_lstclear(&a);
 	return (0);
 }
-
-// Used libft functions: ft_strljoin, ft_strlcat, ft_strlen, ft_putendl_fd, ft_putchar_fd, ft_putstr_fd, ft_abs, ft_isdigit, ft_atol, ft_split, ft_strchr
-
-/*
-required: sort   3 numbers with <=     3 operations
-required: sort   5 numbers with <=    12 operations
-scored:   sort 100 numbers with <=   700 operations   max score
-                                     900 operations
-                                    1100 operations
-                                    1300 operations
-                                    1500 operations   min score
-scored:   sort 500 numbers with <=  5500 operations   max score
-                                    7000 operations
-                                    8500 operations
-                                   10000 operations
-                                   11500 operations   min score
-*/
-
-/* Test all ps language operators
-	print_dlists(a, b, n);
-	pb(&a, &b);
-	print_dlists(a, b, n);
-	ra(&a);
-	print_dlists(a, b, n);
-	sa(&a);
-	print_dlists(a, b, n);
-	pb(&a, &b);
-	print_dlists(a, b, n);
-	rra(&b);
-	print_dlists(a, b, n);
-*/
