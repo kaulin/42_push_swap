@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:33:20 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/26 12:14:25 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/26 14:15:15 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*
 Rotates or reverses until the loop starts with smallest number. Loop has to be 
-already in ascending order.
+already sorted in ascending order.
 */
 void	min_to_top(t_dlist **list, t_dlist **other)
 {
@@ -40,6 +40,7 @@ void	min_to_top(t_dlist **list, t_dlist **other)
 			ps_rotate(list, 'a', other);
 	}
 }
+
 /*
 Checks to see if the numbers in the double linked list are in ascending order.
 */
@@ -58,6 +59,9 @@ int	check_order(t_dlist *list)
 	return (node == min->prev);
 }
 
+/*
+Returns the number of rotations needed to move the node to the top of the list.
+*/
 int	m_to_top(t_dlist *list, t_dlist *node)
 {
 	int	n;
