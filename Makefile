@@ -1,7 +1,6 @@
 NAME = push_swap
 
-SRCS = main.c \
-	push_swap.c \
+SRCS = push_swap.c \
 	ps_moves.c \
 	ps_smart_move.c \
 	ps_sort.c \

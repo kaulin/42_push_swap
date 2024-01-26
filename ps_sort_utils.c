@@ -6,12 +6,40 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:33:20 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/25 10:02:01 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/26 12:14:25 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+Rotates or reverses until the loop starts with smallest number. Loop has to be 
+already in ascending order.
+*/
+void	min_to_top(t_dlist **list, t_dlist **other)
+{
+	int		moves;
+	int		list_size;
+	t_dlist	*node;
+
+	moves = 0;
+	list_size = dl_lstsize(*list);
+	node = *list;
+	if (node->value <= node->prev->value)
+		return ;
+	while (node->value > node->prev->value)
+	{
+		node = node->prev;
+		moves++;
+	}
+	while ((*list)->prev->value < (*list)->value)
+	{
+		if (moves < list_size - moves)
+			ps_revrot(list, 'a', other);
+		else
+			ps_rotate(list, 'a', other);
+	}
+}
 /*
 Checks to see if the numbers in the double linked list are in ascending order.
 */
