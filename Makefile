@@ -20,7 +20,7 @@ LIBDIR = ./libft/
 
 LIBPATH = $(LIBDIR)$(LIBFT)
 
-CC = gcc
+CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
