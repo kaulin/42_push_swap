@@ -31,6 +31,6 @@ This was a 42 cursus project focusing on algorithms and data structures. The aim
 - Refactoring. The idea to increase the number of elements to be left in stack A came after almost two weeks of struggling to push worst case instances of 500 integers to below 5500. The final implementation, especially functions in the ps_sort.c file, could be written and named more clearly.
 
 ## Thanks
-Initial idea for approach: dhorvath
-Great tester: gemartin
-Peer evaluators: pmarkaid, rlouhela, dshatilo
+- Initial idea for approach: dhorvath
+- Great [tester](https://github.com/gemartin99/Push-Swap-Tester) by [gemartin](https://github.com/gemartin99)
+- Peer evaluators: [pmarkaid](https://github.com/pmarkaide), rlouhela, dshatilo
