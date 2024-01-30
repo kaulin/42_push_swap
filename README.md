@@ -28,7 +28,7 @@ This was a 42 cursus project focusing on algorithms and data structures. The aim
 
 ## Possible improvements
 - Adjust the number of elements to be left in stack A and sorted separately dynamically based on the number of initial stack items. With my current understanding (gained with repeated testing, not through mathematical models), the sweet spot is to leave ~3% of the stack in A.
-- Refactoring. The idea to increase the number of elements to be left in stack A came after almost two weeks of struggling to push worst case instances of 500 integers to below 5500. The final implementation, especially functions in the ps_sort.c file, could be written and named more clearly.
+- Refactoring. The idea to increase the number of elements to be left in stack A came after almost two weeks of struggling to push worst case instances of 500 integers to below 5500 moves. The final implementation, especially functions in the ps_sort.c file, could be written and named more clearly.
 
 ## Thanks
 - Initial idea for approach: dhorvath
