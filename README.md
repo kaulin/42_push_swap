@@ -12,7 +12,7 @@ This was a 42 cursus project focusing on algorithms and data structures. The aim
 > The course subject refers to the used data structures as stacks, although the moves allowed are more akin to list operations. My implementation uses a double linked list. For clarity's sake, however, these will be referred to as stacks in this README.
 
 > [!WARNING]
-> To anyone in general, but fellow 42 students in particular: when faced with a problem, it is always better to attempt solving it first alone without consulting the previous works of others. Your precursors were no smarter than and just as fallible as you; Blindly following their footsteps will take only lead you on the same detours they took and prevent you from seeing new, faster routes along the way.
+> To anyone in general, but fellow 42 students in particular: when faced with a problem, it is always better to attempt solving it first alone without consulting the previous works of others. Your precursors were no smarter than and just as fallible as you; Blindly following their footsteps will only lead you on the same detours they took and prevent you from seeing new, faster routes along the way.
 
 ## Solution
 1. Sort stack A elements into stack B in descending order, always pushing the element of stack A that requires the least amount of moves to push to the correct position in stack B. Leave 5-15 elements in stack A to be sorted separately.
