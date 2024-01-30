@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:33:20 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/26 14:15:15 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/30 13:06:23 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	m_to_pos_d(t_dlist *list, t_dlist *node)
 
 /*
 Returns the number of rotations needed so that the node can be pushed into an 
-ascending list.
+ascending list. NOT USED IN CURRENT IMPLEMENTATION.
 */
 int	m_to_pos_a(t_dlist *list, t_dlist *node)
 {

@@ -6,14 +6,14 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 09:24:09 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/25 10:01:22 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:24:19 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /*
-Checks for and imlements a more economic combination of rotations.
+Checks for and implements a more economic combination of rotations.
 */
 static void	double_check(int from_s, int to_s, int *from_m, int *to_m)
 {

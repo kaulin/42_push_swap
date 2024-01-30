@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 15:27:27 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/26 14:10:13 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/30 13:01:22 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ static void	sort_four_or_five(t_dlist **a, t_dlist **b)
 		{
 			ps_push(b, a);
 			pushed--;
-			ps_rotate(a, 'a', b);
 		}
 		else
 			ps_rotate(a, 'a', b);
@@ -104,15 +103,15 @@ static void	sort_remainder(t_dlist **a, t_dlist **b)
 }
 
 /*
-Sorts a list of more than 5 elements.
+Sorts a list of n elements.
 */
-static void	sort_n(int n, t_dlist **a, t_dlist **b)
+void	sort_n(int n, t_dlist **a, t_dlist **b)
 {
 	int	remainder;
 
 	remainder = 5;
-	if (n >= 100)
-		remainder = 10;
+	if (n > 100)
+		remainder = 15;
 	while (n > remainder)
 	{
 		smart_move(a, b, 0);
@@ -132,19 +131,4 @@ static void	sort_n(int n, t_dlist **a, t_dlist **b)
 		else
 			ps_revrot(a, 'a', b);
 	}
-}
-
-/*
-Chooses the sorting algorithm based on the number of list elements.
-*/
-void	sort_control(int n, t_dlist **a, t_dlist **b)
-{
-	if (n == 2)
-		ps_rotate(a, 'a', b);
-	else if (n == 3)
-		sort_three(a, b);
-	else if (n <= 5)
-		sort_four_or_five(a, b);
-	else
-		sort_n(n, a, b);
 }

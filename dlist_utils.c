@@ -6,11 +6,11 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 14:41:06 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/06 16:00:43 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/01/30 13:03:31 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "dlist.h"
 
 t_dlist	*dl_lstnew(int value)
 {
