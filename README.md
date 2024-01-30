@@ -24,7 +24,7 @@ This was a 42 cursus project focusing on algorithms and data structures. The aim
 - Checking if the stack is already in ascending order, but doen't necessarily start with the smallest integer (stacks of size 2 always belong to this set).
 - Special cases for stacks of sizes 3-5.
 - Noticing opportunities to utilise double rotate and double reverse rotate.
-- For larger sets, increase the amount of elements left in stack A.
+- For larger sets, increase the amount of elements left in stack A to prevent (in the worst case) several counts of n/2 rotates.
 
 ## Possible improvements
 - Adjust the number of elements to be left in stack A and sorted separately dynamically based on the number of initial stack items. With my current understanding (gained with repeated testing, not through mathematical models), the sweet spot is to leave ~3% of the stack in A.
