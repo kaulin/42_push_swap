@@ -1,7 +1,7 @@
 # push_swap
 A project about sorting integer data using a predefined set of moves.
 
-## General
+## Description
 This was a 42 cursus project focusing on algorithms and data structures. The aim was to sort a set of unique integers using "stacks" A and B, and as few of the following moves as possible:
 - swap A (sa), swap B (sb), swap both (ss)
 - push A (pa), push B (pa)
@@ -22,7 +22,7 @@ This was a 42 cursus project focusing on algorithms and data structures. The aim
 
 ## Optimisations
 - Checking if the stack is already in ascending order, but doen't necessarily start with the smallest integer (stacks of size 2 always belong to this set).
-- Special cases for stacks of sizes 3-5.
+-  Special, hardcoded, cases for small stack sizes (3-5).
 - Noticing opportunities to utilise double rotate and double reverse rotate.
 - For larger sets, increase the amount of elements left in stack A to prevent (in the worst case) several counts of n/2 rotates.
 
