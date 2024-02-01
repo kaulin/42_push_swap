@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 16:10:54 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/01/30 13:04:37 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/02/01 09:52:55 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 void	sort_n(int n, t_dlist **a, t_dlist **b);
 void	smart_move(t_dlist **from, t_dlist **to, int dir);
-// void	sort_control(int n, t_dlist **a, t_dlist **b);
 void	min_to_top(t_dlist **list, t_dlist **other);
 int		check_order(t_dlist *list);
 int		m_to_pos_a(t_dlist *list, t_dlist *node);
