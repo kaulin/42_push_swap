@@ -1,4 +1,10 @@
-# push_swap
+> [!WARNING]
+> To anyone in general, but fellow 42 students in particular: when faced with a problem, it is always better to attempt solving it first alone without consulting the previous works of others. Your precursors were no smarter than and just as fallible as you; Blindly following their footsteps will only lead you on the same detours they took and prevent you from seeing new, faster routes along the way.
+
+> [!NOTE]  
+> 42 Cursus C projects need to follow specific rules and formatting dictated by the [42 Norm](https://github.com/42School/norminette/tree/master/pdf).
+>
+> # push_swap
 A project about sorting integer data using a predefined set of moves.
 
 ## Introduction
@@ -10,12 +16,6 @@ This was a 42 cursus project focusing on algorithms and data structures. The aim
 
 >[!NOTE]
 > The course subject refers to the used data structures as stacks, although the moves allowed are more akin to list operations. My implementation uses a double linked list. For clarity's sake, however, these will be referred to as stacks in this README.
-
-> [!NOTE]  
-> 42 Cursus C projects need to follow specific rules and formatting dictated by the [42 Norm](https://github.com/42School/norminette/tree/master/pdf).
-
-> [!WARNING]
-> To anyone in general, but fellow 42 students in particular: when faced with a problem, it is always better to attempt solving it first alone without consulting the previous works of others. Your precursors were no smarter than and just as fallible as you; Blindly following their footsteps will only lead you on the same detours they took and prevent you from seeing new, faster routes along the way.
 
 ## Installation
 Git clone the repository, move into it and run `make` to compile the program.
