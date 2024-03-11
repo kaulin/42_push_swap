@@ -3,8 +3,8 @@
 
 > [!NOTE]  
 > 42 Cursus C projects need to follow specific rules and formatting dictated by the [42 Norm](https://github.com/42School/norminette/tree/master/pdf).
->
-> # push_swap
+
+# push_swap
 A project about sorting integer data using a predefined set of moves.
 
 ## Introduction
